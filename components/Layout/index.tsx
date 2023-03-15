@@ -1,11 +1,13 @@
-import { useTheme } from '../../hooks/theme';
+import clsx from 'clsx';
+import { poppins } from '../../constants/font';
 import { Footer } from './Footer';
 import { Header } from './Header';
 
 export default function Layout({ children }: React.PropsWithChildren<{}>) {
-  const nowClassName = useTheme('flex min-h-screen flex-col bg-cos-gradient', 'bg-cos-gradient-dark');
   return (
-    <div className={nowClassName}>
+    <div
+      className={clsx('flex min-h-screen flex-col bg-cos-gradient dark:bg-cos-gradient-dark dark:text-white', poppins.variable)}
+    >
       <Header />
       <main className="relative h-full w-full flex-grow">{children}</main>
       <Footer />

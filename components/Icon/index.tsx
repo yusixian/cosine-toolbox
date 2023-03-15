@@ -1,34 +1,57 @@
-import classNames from 'classnames';
-import React from 'react';
+import clsx from 'clsx';
+import React, { useCallback } from 'react';
+import { IconType } from './type';
+
 export type IconProps = {
-  type: string;
+  /** 图标唯一类型 */
+  type: IconType;
+  /** 图标点击事件 */
+  onClick?: (e: React.MouseEvent<SVGElement | HTMLImageElement>) => void;
+  /** 图标显示与否 */
+  show?: boolean;
+  /** 图标链接 */
+  href?: string;
+  /** 组件额外的 CSS className */
   className?: string;
+  /** 组件额外的 CSS style */
   style?: React.CSSProperties;
-  onClick?: () => void;
-  show?: boolean; // 默认为显示 true
-  href?: string; // 可以点的话，需要指定 href
+  /** 自定义图标来源 若自定义则不按照图标类型来 */
+  iconUrl?: string;
 };
-const IconFont = ({ type, style, className, onClick }: IconProps) => {
+
+const IconFont: React.FunctionComponent<IconProps> = ({ type, style, className, onClick }) => {
   return (
-    <svg className={classNames('icon', className)} style={style} aria-hidden="true" onClick={onClick}>
+    <svg onClick={onClick} className={clsx('cos__icon', className)} style={style} aria-hidden="true">
       <use xlinkHref={`#icon-${type}`}></use>
     </svg>
   );
 };
-
-/**
- * use Like
- * <Icon type="image" />
- * <Icon type="default" show=false />
- * <Icon type="text" style={{fontSize: 40, color: 'gray'}} />
- */
-const Icon = ({ show = true, href, className, ...attr }: IconProps) => {
-  if (!href) return <>{show && <IconFont className={classNames('cursor-pointer', className)} {...attr} />}</>;
+const Icon = ({ show, href, className, iconUrl, onClick, ...restProps }: IconProps): JSX.Element => {
+  const _onClick = useCallback(
+    (e: React.MouseEvent<SVGElement | HTMLImageElement>): void => {
+      onClick?.(e);
+      href && window?.open(href, '_blank');
+    },
+    [href, onClick],
+  );
   return (
-    <a href={href} className="cursor-pointer">
-      {show && <IconFont className={className} {...attr} />}
-    </a>
+    <>
+      {show &&
+        (iconUrl ? (
+          <img
+            src={iconUrl}
+            alt={iconUrl}
+            className={clsx({ 'cursor-pointer': href || onClick }, className)}
+            style={restProps?.style}
+            onClick={_onClick}
+          />
+        ) : (
+          <IconFont onClick={_onClick} className={clsx({ 'cursor-pointer': href || onClick }, className)} {...restProps} />
+        ))}
+    </>
   );
 };
-
+Icon.defaultProps = {
+  show: true,
+};
 export default Icon;

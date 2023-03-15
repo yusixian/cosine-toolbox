@@ -1,6 +1,7 @@
 module.exports = {
-  content: ['./pages/**/*.{js,ts,jsx,tsx}', './components/**/*.{js,ts,jsx,tsx}', './store/**/*.{js,ts,jsx,tsx}'],
-  darkMode: 'class', // false or media or class https://www.tailwindcss.cn/docs/dark-mode#toggling-dark-mode-manually
+  darkMode: 'class', // https://tailwindcss.com/docs/dark-mode
+  //
+  content: ['./pages/**/*.{js,ts,jsx,tsx}', './components/**/*.{js,ts,jsx,tsx}'],
   theme: {
     extend: {
       container: {
@@ -17,8 +18,11 @@ module.exports = {
         'cos-primary': '#1EDB8C',
       },
       backgroundImage: {
-        'cos-gradient': 'linear-gradient(160deg, rgba(88,178,220,1) 0%, rgba(248,195,205,1) 100%)',
+        'cos-gradient': 'linear-gradient( 135deg, #ee9ca7 10%, #ffdde1 100%)',
         'cos-gradient-dark': 'linear-gradient(160deg, rgba(28,28,28,1) 0%, rgba(55,60,56,1) 100%)',
+      },
+      fontFamily: {
+        poppins: 'var(--font-poppins)',
       },
     },
   },

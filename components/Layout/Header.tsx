@@ -1,11 +1,13 @@
+import { useToggleTheme } from '../../hooks/useToggleTheme';
 import Icon from '../Icon';
-import { useToggleTheme } from '../../hooks/theme';
+import { IconType } from '../Icon/type';
+
 export function Header() {
   const toggleTheme = useToggleTheme();
+
   return (
     <header className="flex h-12 w-full items-center justify-end gap-2 px-2 ">
-      <Icon className="text-4xl" type="lightOrDark" onClick={() => toggleTheme()} />
-      <Icon className="text-4xl" type="search" />
+      <Icon className="text-4xl" type={IconType.LIGHT_OR_DARK} onClick={toggleTheme} />
     </header>
   );
 }

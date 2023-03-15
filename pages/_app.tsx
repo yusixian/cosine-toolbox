@@ -1,11 +1,11 @@
 import '../styles/globals.css';
 import Head from 'next/head';
-import Script from 'next/script';
 import type { NextPage } from 'next';
 import type { AppProps } from 'next/app';
 import { ReactElement, ReactNode } from 'react';
 import Layout from '../components/Layout';
 import { RecoilRoot } from 'recoil';
+import { ThemeProvider } from 'next-themes';
 
 type NextPageWithLayout = NextPage & {
   getLayout?: (page: ReactElement) => ReactNode;
@@ -16,15 +16,13 @@ type AppPropsWithLayout = AppProps & {
 };
 function App({ Component, pageProps }: AppPropsWithLayout) {
   const getLayout = Component.getLayout ?? ((page) => <Layout>{page}</Layout>);
+
   return (
     <RecoilRoot>
       <Head>
         <title>余弦工具箱</title>
-        <meta name="description" content="一个专为前端程序员而生的工具站点~" />
-        <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Script id="iconfont-js" src="/js/iconfont.js" strategy="beforeInteractive" />
-      {getLayout(<Component {...pageProps} />)}
+      <ThemeProvider attribute="class">{getLayout(<Component {...pageProps} />)}</ThemeProvider>
     </RecoilRoot>
   );
 }
