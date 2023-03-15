@@ -7,16 +7,20 @@ export default function Csv2Json() {
       'text/csv': ['.csv'],
     },
   });
-  const [rows, setRows] = useState([]);
+  const [rows, setRows] = useState<
+    {
+      [key: string]: string;
+    }[]
+  >([]);
   const acceptedFileItems = acceptedFiles.map((file) => (
-    <li key={file.path}>
-      {file.path} - {file.size} bytes
+    <li key={(file as any).path}>
+      {(file as any).path} - {file.size} bytes
     </li>
   ));
 
   const fileRejectionItems = fileRejections.map(({ file, errors }) => (
-    <li key={file.path}>
-      {file.path} - {file.size} bytes
+    <li key={(file as any).path}>
+      {(file as any).path} - {file.size} bytes
       <ul>
         {errors.map((e) => (
           <li key={e.code}>{e.message}</li>
@@ -30,13 +34,14 @@ export default function Csv2Json() {
     const reader = new FileReader();
     reader.onload = () => {
       const result = reader.result;
+      if (!result || typeof result !== 'string') return;
       const lines = result.split('\r\n');
       const headers = lines[0].split(',');
       console.log({ lines, result });
-      const rows = [];
+      const rows: { [key: string]: string }[] = [];
       for (let i = 1; i < lines.length; i++) {
         const values = lines[i].split(/,s*(?![^"]*",)/); // https://www.cnblogs.com/ae6623/p/4416485.html
-        const row = {};
+        const row: { [key: string]: string } = {};
         for (let j = 0; j < headers.length; j++) {
           let value = values[j];
           if (value?.search(',') !== -1) {
