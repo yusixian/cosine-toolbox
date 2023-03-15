@@ -20,7 +20,7 @@ function App({ Component, pageProps }: AppPropsWithLayout) {
   return (
     <RecoilRoot>
       <Head>
-        <title>余弦工具箱</title>
+        <title>cosine-toolbox</title>
       </Head>
       <ThemeProvider attribute="class">{getLayout(<Component {...pageProps} />)}</ThemeProvider>
     </RecoilRoot>
