@@ -105,14 +105,15 @@ export default function Csv2Json() {
             >
               Clear
             </button>
-            <button className="rounded bg-rose-400/50  py-2 px-4 hover:opacity-80 dark:bg-blue-300" type="submit">
+            <button className="rounded bg-rose-400/50 py-2 px-4 hover:opacity-80 dark:bg-blue-300" type="submit">
               Submit
             </button>
           </div>
         </form>
         <div
           {...getRootProps({
-            className: 'flex-1 border-2 rounded self-stretch outline-none border-dashed border-blue-300 p-5',
+            className:
+              'flex-1 border-2 rounded cursor-pointer self-stretch outline-none border-dashed border-rose-300 dark:border-blue-300 p-5',
           })}
         >
           <input {...getInputProps()} />

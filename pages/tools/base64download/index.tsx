@@ -102,7 +102,7 @@ export default function Base64Download() {
           预览
           <ul className="flex flex-wrap items-center justify-center gap-2">
             {stringArray.map((str, index) => (
-              <li key={index} className="rounded p-2 dark:bg-slate-700">
+              <li key={index} className="rounded bg-rose-100 p-2 dark:bg-sky-700">
                 <div className="w-36 truncate">{str}</div>
                 <img src={str} className="max-h-80 w-52" alt={str} />
               </li>
