@@ -1,8 +1,9 @@
 import { motion } from 'framer-motion';
 import { useState } from 'react';
 import { useDropzone } from 'react-dropzone';
-import Card from '../../../components/Card';
-import { csvExample } from '../../../constants/examples';
+import Card from '../../components/Card';
+import { RouterType } from '../../constants';
+import { csvExample } from '../../constants/examples';
 
 export default function Csv2Json() {
   const { acceptedFiles, fileRejections, getRootProps, getInputProps } = useDropzone({
@@ -83,7 +84,7 @@ export default function Csv2Json() {
   };
 
   return (
-    <motion.div layoutId="csv2json" className="flex h-full w-full flex-col gap-4 px-4 text-xl">
+    <motion.div layoutId={RouterType.CSV2JSON} className="flex h-full w-full flex-col gap-4 px-4 text-xl">
       <Card className="flex flex-col items-center px-4 dark:text-white">
         <form onSubmit={handleSubmit} className="flex w-full flex-col gap-3">
           <button

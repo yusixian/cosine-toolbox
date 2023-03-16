@@ -1,4 +1,6 @@
 import '../styles/globals.css';
+import 'react-toastify/dist/ReactToastify.css';
+
 import Head from 'next/head';
 import type { NextPage } from 'next';
 import type { AppProps } from 'next/app';

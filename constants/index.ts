@@ -1,5 +1,32 @@
 import { IconType } from '../components/Icon/type';
 
+export enum RouterType {
+  CSV2JSON = 'csv2json',
+  BASE64_UTIL = 'base64util',
+}
+export type ToolType = {
+  type: RouterType;
+  title: string; // unique
+  pageTitle?: string;
+};
+export const tools: ToolType[] = [
+  {
+    type: RouterType.CSV2JSON,
+    title: 'CSV转JSON',
+    pageTitle: 'CSV转JSON - 在线转换文档文件',
+  },
+  {
+    type: RouterType.BASE64_UTIL,
+    title: 'base64 通用工具',
+    pageTitle: 'Base64 通用工具',
+  },
+];
+
+export const toolsMap = tools.reduce((prev, curr) => {
+  prev[curr.type] = curr;
+  return prev;
+}, {} as Record<RouterType, ToolType>);
+
 export enum SocialType {
   Github = 'github',
   Juejin = 'juejin',
