@@ -1,7 +1,6 @@
 lockfileVersion: 5.4
 
 specifiers:
-  '@next/font': ^13.2.1
   '@types/file-saver': ^2.0.5
   '@types/lodash-es': ^4.17.7
   '@types/node': 18.6.3
@@ -31,7 +30,6 @@ specifiers:
   typescript: 4.7.4
 
 dependencies:
-  '@next/font': 13.2.1
   '@types/file-saver': 2.0.5
   '@types/lodash-es': 4.17.7
   antd: 5.3.1_biqbaboplfbrettd7655fr4n2y
@@ -208,10 +206,6 @@ packages:
     dependencies:
       glob: 7.1.7
     dev: true
-
-  /@next/font/13.2.1:
-    resolution: {integrity: sha512-4sergLt7xp9+mZuKME/xM4tLlHGTcmL7naCq0qCTcAlof6NnttshYgiLOdhSiy0NcI+/yM3BjvdEk++O96UzTg==}
-    dev: false
 
   /@next/swc-android-arm-eabi/13.2.1:
     resolution: {integrity: sha512-Yua7mUpEd1wzIT6Jjl3dpRizIfGp9NR4F2xeRuQv+ae+SDI1Em2WyM9m46UL+oeW5GpMiEHoaBagr47RScZFmQ==}

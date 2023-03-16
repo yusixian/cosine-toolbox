@@ -84,7 +84,7 @@ export default function Csv2Json() {
 
   return (
     <motion.div layoutId="csv2json" className="flex h-full w-full flex-col gap-4 px-4 text-xl">
-      <Card className="flex flex-col items-center px-4">
+      <Card className="flex flex-col items-center px-4 dark:text-white">
         <form onSubmit={handleSubmit} className="flex w-full flex-col gap-3">
           <button
             className="rounded bg-rose-400/50  py-2 px-4 text-2xl hover:opacity-80 dark:bg-blue-300"
@@ -97,9 +97,18 @@ export default function Csv2Json() {
             value={inputValue}
             onChange={onInputChange}
           />
-          <button className="rounded bg-rose-400/50  py-2 px-4 hover:opacity-80 dark:bg-blue-300" type="submit">
-            Submit
-          </button>
+          <div className="grid grid-cols-2 gap-4 md:grid-cols-1">
+            <button
+              className="rounded bg-rose-400/50 py-2 px-4 hover:opacity-80 dark:bg-blue-600"
+              onClick={() => setInputValue('')}
+              type="submit"
+            >
+              Clear
+            </button>
+            <button className="rounded bg-rose-400/50  py-2 px-4 hover:opacity-80 dark:bg-blue-300" type="submit">
+              Submit
+            </button>
+          </div>
         </form>
         <div
           {...getRootProps({
@@ -116,8 +125,7 @@ export default function Csv2Json() {
           <h4>Rejected files</h4>
           <ul>{fileRejectionItems}</ul>
         </aside>
-
-        <button className="rounded bg-rose-400/50 py-2 px-4 hover:opacity-80 dark:bg-blue-300" onClick={handleOnDrop}>
+        <button className="w-full rounded bg-rose-400/50 py-2 px-4 hover:opacity-80 dark:bg-blue-300" onClick={handleOnDrop}>
           Change!
         </button>
       </Card>
