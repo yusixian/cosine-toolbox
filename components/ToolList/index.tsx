@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router';
-import Card from '../card';
+import Card from '../Card';
 
 const ToolList = () => {
   const router = useRouter();
@@ -8,7 +8,7 @@ const ToolList = () => {
       <Card layoutId="csv2json" title="CSV转JSON" onClick={() => router.push('/tools/csv2json')} clickable showArrow />
       <Card
         layoutId="base64download"
-        title="base64数组批量下载"
+        title="base64图片批量下载"
         onClick={() => router.push('/tools/base64download')}
         clickable
         showArrow

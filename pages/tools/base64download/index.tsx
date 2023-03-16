@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { useState } from 'react';
-import Card from '../../../components/card';
+import Card from '../../../components/Card';
 import { base64Example } from '../../../constants/examples';
 import { useThrottle } from '../../../hooks/useThrottle';
 
