@@ -10,8 +10,11 @@
   },
   "dependencies": {
     "@next/font": "^13.2.1",
+    "@types/file-saver": "^2.0.5",
     "@types/lodash-es": "^4.17.7",
+    "antd": "^5.3.1",
     "clsx": "^1.2.1",
+    "file-saver": "^2.0.5",
     "framer-motion": "^10.3.2",
     "lodash-es": "^4.17.21",
     "next": "13.2.1",

@@ -1,3 +1,4 @@
+import { motion } from 'framer-motion';
 import { useState } from 'react';
 import { useDropzone } from 'react-dropzone';
 
@@ -59,7 +60,7 @@ export default function Csv2Json() {
   };
 
   return (
-    <div className="flex h-full w-full flex-col gap-4 px-4">
+    <motion.div layoutId="csv2json" className="flex h-full w-full flex-col gap-4 px-4">
       <div className="text-center text-3xl">CSV转JSON - 在线转换文档文件</div>
       <section className="flex cursor-pointer flex-col items-center px-4">
         <div
@@ -98,6 +99,6 @@ export default function Csv2Json() {
           );
         })}
       </div>
-    </div>
+    </motion.div>
   );
 }
