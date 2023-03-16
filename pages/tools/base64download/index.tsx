@@ -47,7 +47,7 @@ export default function Base64Download() {
       <Card className="w-full" title="输入base64字符串数组 空格分隔" showArrow={false}>
         <div className="flex flex-col gap-2 text-rose-500/70 dark:text-white">
           <div className="text-xl">输入base64字符串数组 空格分隔</div>
-          <div className="text-xl">inputItemValue: {inputArrValue}</div>
+          <div className="w-full truncate text-xl">inputItemValue: {inputArrValue}</div>
           <button
             className="rounded bg-rose-400/50  py-2 px-4 text-2xl hover:opacity-80 dark:bg-blue-300"
             onClick={() => setInputArrValue(base64Example)}
