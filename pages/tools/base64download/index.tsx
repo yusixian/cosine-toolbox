@@ -29,7 +29,7 @@ export default function Base64Download() {
           /^\s*data:(?:[a-z]+\/[a-z0-9-+.]+(?:;[a-z-]+=[a-z0-9-]+)?)?(?:;base64)?,([a-z0-9!$&',()*+;=\-._~:@/?%\s]*?)\s*$/i;
         if (reg.test(str)) return str;
 
-        const arr = str.replace(/\s/, '').match(/[a-z0-9!$&',()*+;=\-._~:@/?%\s]*/gi);
+        const arr = str.replace(/\s/, '').match(/[a-z0-9,+;=\-.:/\s]*/gi);
         return arr?.reduce((prev, cur) => prev + cur, '') ?? '';
       });
     });
@@ -81,7 +81,7 @@ export default function Base64Download() {
         <div className="flex flex-col gap-2">
           <div className="flex w-full flex-wrap items-center gap-2 text-white">
             <button className="rounded bg-rose-400/50 py-2 px-4 hover:opacity-80 dark:bg-blue-300" onClick={parseByBase64}>
-              正则过滤
+              正则过滤（去除双引号）
             </button>
             <button
               className="rounded bg-rose-400/50 py-2 px-4 hover:opacity-80 dark:bg-blue-600"
