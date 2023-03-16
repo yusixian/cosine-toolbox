@@ -43,7 +43,7 @@ export default function Base64Download() {
     });
   });
   return (
-    <motion.div layoutId="base64download" className="flex flex-col gap-4">
+    <motion.div layoutId="base64download" className="flex flex-col gap-4 px-8">
       <Card className="w-full" title="输入base64字符串数组 空格分隔" showArrow={false}>
         <div className="flex flex-col gap-2 text-rose-500/70 dark:text-white">
           <div className="text-xl">输入base64字符串数组 空格分隔</div>

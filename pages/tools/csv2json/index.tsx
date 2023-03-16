@@ -1,6 +1,8 @@
 import { motion } from 'framer-motion';
 import { useState } from 'react';
 import { useDropzone } from 'react-dropzone';
+import Card from '../../../components/Card';
+import { csvExample } from '../../../constants/examples';
 
 export default function Csv2Json() {
   const { acceptedFiles, fileRejections, getRootProps, getInputProps } = useDropzone({
@@ -13,6 +15,8 @@ export default function Csv2Json() {
       [key: string]: string;
     }[]
   >([]);
+  const [inputValue, setInputValue] = useState(csvExample);
+
   const acceptedFileItems = acceptedFiles.map((file) => (
     <li key={(file as any).path}>
       {(file as any).path} - {file.size} bytes
@@ -30,39 +34,73 @@ export default function Csv2Json() {
     </li>
   ));
 
+  const parseCSV = (str: string) => {
+    const lines = str.split('\n');
+    const headers = lines[0].split(/,s*(?![^"]*",)/);
+    console.log({ lines, str });
+    const rows: { [key: string]: string }[] = [];
+    for (let i = 1; i < lines.length; i++) {
+      const values = lines[i].split(/,s*(?![^"]*",)/); // https://www.cnblogs.com/ae6623/p/4416485.html
+      const row: { [key: string]: string } = {};
+      for (let j = 0; j < headers.length; j++) {
+        let value = values[j];
+        if (value?.search(',') !== -1) {
+          value = value?.substring(1, value?.length - 1);
+          console.log('引号内有逗号', value);
+        }
+        row[headers[j]] = value;
+      }
+      console.log({ values, row });
+      rows.push(row);
+      setRows(rows);
+    }
+  };
+
   const handleOnDrop = () => {
-    if (!acceptedFiles?.length) return;
+    console.log({ acceptedFiles, inputValue });
+    if (!acceptedFiles?.length && !inputValue) return;
+    if (!acceptedFiles?.length) {
+      parseCSV(inputValue);
+      return;
+    }
     const reader = new FileReader();
     reader.onload = () => {
       const result = reader.result;
       if (!result || typeof result !== 'string') return;
-      const lines = result.split('\r\n');
-      const headers = lines[0].split(',');
-      console.log({ lines, result });
-      const rows: { [key: string]: string }[] = [];
-      for (let i = 1; i < lines.length; i++) {
-        const values = lines[i].split(/,s*(?![^"]*",)/); // https://www.cnblogs.com/ae6623/p/4416485.html
-        const row: { [key: string]: string } = {};
-        for (let j = 0; j < headers.length; j++) {
-          let value = values[j];
-          if (value?.search(',') !== -1) {
-            value = value?.substring(1, value?.length - 1);
-            console.log('引号内有逗号', value);
-          }
-          row[headers[j]] = value;
-        }
-        console.log({ values, row });
-        rows.push(row);
-        setRows(rows);
-      }
+      parseCSV(result);
     };
     reader.readAsText(acceptedFiles[0]);
   };
+  const onInputChange = (e: any) => setInputValue(e.target.value);
+  const handleSubmit = (e: any) => {
+    e?.preventDefault();
+    console.log({ e });
+    if (!inputValue.trim()) {
+      return;
+    }
+    const newString = '' + inputValue;
+    console.log({ newString });
+  };
 
   return (
-    <motion.div layoutId="csv2json" className="flex h-full w-full flex-col gap-4 px-4">
-      <div className="text-center text-3xl">CSV转JSON - 在线转换文档文件</div>
-      <section className="flex cursor-pointer flex-col items-center px-4">
+    <motion.div layoutId="csv2json" className="flex h-full w-full flex-col gap-4 px-4 text-xl">
+      <Card className="flex flex-col items-center px-4">
+        <form onSubmit={handleSubmit} className="flex w-full flex-col gap-3">
+          <button
+            className="rounded bg-rose-400/50  py-2 px-4 text-2xl hover:opacity-80 dark:bg-blue-300"
+            onClick={() => setInputValue(csvExample)}
+          >
+            示例
+          </button>
+          <textarea
+            className="h-44 w-full rounded border-2 border-rose-300 bg-rose-100 p-1 outline-none dark:border-blue-300 dark:bg-sky-700"
+            value={inputValue}
+            onChange={onInputChange}
+          />
+          <button className="rounded bg-rose-400/50  py-2 px-4 hover:opacity-80 dark:bg-blue-300" type="submit">
+            Submit
+          </button>
+        </form>
         <div
           {...getRootProps({
             className: 'flex-1 border-2 rounded self-stretch outline-none border-dashed border-blue-300 p-5',
@@ -78,27 +116,31 @@ export default function Csv2Json() {
           <h4>Rejected files</h4>
           <ul>{fileRejectionItems}</ul>
         </aside>
-      </section>
-      <button className="cursor-pointer rounded border-2 border-blue-500 p-2 text-3xl hover:opacity-80" onClick={handleOnDrop}>
-        change!
-      </button>
-      <div className="flex flex-col gap-4">
-        {rows?.map((item: { [key: string]: string }, idx) => {
-          if (!item) return null;
-          return (
-            <div className="flex flex-wrap gap-4 bg-slate-600 p-2 text-center text-xl" key={idx}>
-              {Object.keys(item).map((key, idx2) => {
-                return (
-                  <div className="bg-slate-500" key={idx2}>
-                    <div className="bg-slate-400 px-2">{key}</div>
-                    <div className="bg-slate-700 px-2">{item[key]}</div>
-                  </div>
-                );
-              })}
-            </div>
-          );
-        })}
-      </div>
+
+        <button className="rounded bg-rose-400/50 py-2 px-4 hover:opacity-80 dark:bg-blue-300" onClick={handleOnDrop}>
+          Change!
+        </button>
+      </Card>
+      <Card>
+        <div className="whitespace-pre">{inputValue}</div>
+        <div className="flex flex-col gap-4">
+          {rows?.map((item: { [key: string]: string }, idx) => {
+            if (!item) return null;
+            return (
+              <div className="flex flex-wrap gap-4 bg-rose-100 p-2 text-center text-xl dark:bg-slate-600" key={idx}>
+                {Object.keys(item).map((key, idx2) => {
+                  return (
+                    <div className="bg-rose-300 dark:bg-slate-500" key={idx2}>
+                      <div className="bg-rose-400 px-2 text-red-100 dark:bg-slate-400">{key}</div>
+                      <div className="bg-rose-200 px-2 dark:bg-slate-700">{item[key]}</div>
+                    </div>
+                  );
+                })}
+              </div>
+            );
+          })}
+        </div>
+      </Card>
     </motion.div>
   );
 }
