@@ -15,7 +15,8 @@ module.exports = {
         '2xl': '1366px',
       },
       colors: {
-        'cos-primary': '#1EDB8C',
+        'cos-primary': '#fb7185',
+        'cos-dark-primary': '#2c69b2',
       },
       backgroundImage: {
         'cos-gradient': 'linear-gradient( 135deg, #ee9ca7 10%, #ffdde1 100%)',
@@ -23,6 +24,7 @@ module.exports = {
       },
       fontFamily: {
         poppins: 'var(--font-poppins)',
+        sc: 'var(--font-sc)',
       },
     },
   },

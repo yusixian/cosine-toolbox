@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { base64ImageExample } from '../../constants/examples';
 import { useInput } from '../../hooks/useInput';
 import { useThrottle } from '../../hooks/useThrottle';
+import Button from '../Button';
 import Card from '../Card';
 
 type Base64DownloadProps = {
@@ -49,12 +50,9 @@ export function Base64Download({ className }: Base64DownloadProps) {
       <div className="text-center text-2xl">Base64 图片批量下载</div>
       <Card className={'w-full'} title="输入base64字符串数组 空格分隔">
         <div className="flex flex-col gap-2 text-rose-500/70 dark:text-white">
-          <button
-            className="rounded bg-rose-400/50  py-2 px-4 text-2xl hover:opacity-80 dark:bg-blue-300"
-            onClick={() => setInputValue(base64ImageExample)}
-          >
+          <Button onClick={() => setInputValue(base64ImageExample)} type="secondary" className="rounded text-2xl" size="large">
             示例
-          </button>
+          </Button>
           <form onSubmit={handleSubmitArr} className="flex flex-col gap-3">
             <textarea
               className="h-24 w-full rounded border-2 border-rose-300 bg-rose-100 p-1 outline-none dark:border-blue-300 dark:bg-sky-700"
@@ -62,16 +60,12 @@ export function Base64Download({ className }: Base64DownloadProps) {
               onChange={onInputChange}
             />
             <div className="grid grid-cols-2 gap-4 text-2xl md:grid-cols-1">
-              <button className="rounded bg-rose-400/50 py-2 px-4 hover:opacity-80 dark:bg-blue-300" type="submit">
+              <Button isSubmit type="primary" className="rounded" size="large">
                 Add
-              </button>
-              <button
-                className="rounded bg-rose-400/50 py-2 px-4 hover:opacity-80 dark:bg-blue-600"
-                onClick={() => setStringArray([])}
-                type="submit"
-              >
+              </Button>
+              <Button onClick={() => setStringArray([])} type="secondary" className="rounded" size="large">
                 Clear
-              </button>
+              </Button>
             </div>
           </form>
         </div>
@@ -79,16 +73,12 @@ export function Base64Download({ className }: Base64DownloadProps) {
       <Card title="Result">
         <div className="flex flex-col gap-2 text-xl">
           <div className="flex w-full flex-wrap items-center gap-2 text-white">
-            <button className="rounded bg-rose-400/50 py-2 px-4 hover:opacity-80 dark:bg-blue-300" onClick={parseByBase64}>
+            <Button onClick={parseByBase64} type="secondary" className="rounded" size="large">
               正则过滤{`（/[a-z0-9,+;=\-.:/\s]*/gi）`}
-            </button>
-            <button
-              className="rounded bg-rose-400/50 py-2 px-4 hover:opacity-80 dark:bg-blue-600"
-              onClick={downloadAll}
-              type="submit"
-            >
+            </Button>
+            <Button onClick={downloadAll} type="primary" className="rounded" size="large">
               批量下载图片
-            </button>
+            </Button>
             文件前缀:
             <input
               type="text"

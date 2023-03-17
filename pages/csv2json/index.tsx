@@ -1,9 +1,13 @@
 import { motion } from 'framer-motion';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useDropzone } from 'react-dropzone';
 import Card from '../../components/Card';
 import { RouterType } from '../../constants';
 import { csvExample } from '../../constants/examples';
+import { useInput } from '../../hooks/useInput';
+import copy from 'copy-to-clipboard';
+import { toast } from 'react-toastify';
+import Button from '../../components/Button';
 
 export default function Csv2Json() {
   const { acceptedFiles, fileRejections, getRootProps, getInputProps } = useDropzone({
@@ -16,7 +20,8 @@ export default function Csv2Json() {
       [key: string]: string;
     }[]
   >([]);
-  const [inputValue, setInputValue] = useState(csvExample);
+  const { inputValue, setInputValue, onInputChange } = useInput(csvExample);
+  const { inputValue: inputJsonStr, setInputValue: setInputJsonStr, onInputChange: onInputJsonStrChange } = useInput('');
 
   const acceptedFileItems = acceptedFiles.map((file) => (
     <li key={(file as any).path}>
@@ -57,7 +62,7 @@ export default function Csv2Json() {
     }
   };
 
-  const handleOnDrop = () => {
+  const handleChange = () => {
     console.log({ acceptedFiles, inputValue });
     if (!acceptedFiles?.length && !inputValue) return;
     if (!acceptedFiles?.length) {
@@ -72,7 +77,7 @@ export default function Csv2Json() {
     };
     reader.readAsText(acceptedFiles[0]);
   };
-  const onInputChange = (e: any) => setInputValue(e.target.value);
+
   const handleSubmit = (e: any) => {
     e?.preventDefault();
     console.log({ e });
@@ -83,33 +88,40 @@ export default function Csv2Json() {
     console.log({ newString });
   };
 
+  const onCopy = (e: any) => {
+    e?.preventDefault();
+    try {
+      copy(inputJsonStr);
+      toast('WOW! 已经成功复制到剪切板啦=v=');
+    } catch (e) {
+      toast.error('好像出了点错误TwT');
+      console.error('onCopy Error', e);
+    }
+  };
+
+  useEffect(() => {
+    setInputJsonStr(JSON.stringify(rows));
+  }, [rows, setInputJsonStr]);
+
   return (
     <motion.div layoutId={RouterType.CSV2JSON} className="flex h-full w-full flex-col gap-4 px-4 text-xl">
-      <Card className="flex flex-col items-center px-4 dark:text-white">
+      <Card title="填入待转换csv文本或拖拽文件" className="flex flex-col items-center px-4 dark:text-white">
         <form onSubmit={handleSubmit} className="flex w-full flex-col gap-3">
-          <button
+          {/* <button
             className="rounded bg-rose-400/50  py-2 px-4 text-2xl hover:opacity-80 dark:bg-blue-300"
             onClick={() => setInputValue(csvExample)}
           >
             示例
-          </button>
+          </button> */}
+          <Button onClick={() => setInputValue(csvExample)} type="primary" className="rounded text-2xl" size="large">
+            示例
+          </Button>
           <textarea
             className="h-44 w-full rounded border-2 border-rose-300 bg-rose-100 p-1 outline-none dark:border-blue-300 dark:bg-sky-700"
             value={inputValue}
             onChange={onInputChange}
           />
-          <div className="grid grid-cols-2 gap-4 md:grid-cols-1">
-            <button
-              className="rounded bg-rose-400/50 py-2 px-4 hover:opacity-80 dark:bg-blue-600"
-              onClick={() => setInputValue('')}
-              type="submit"
-            >
-              Clear
-            </button>
-            <button className="rounded bg-rose-400/50 py-2 px-4 hover:opacity-80 dark:bg-blue-300" type="submit">
-              Submit
-            </button>
-          </div>
+          <div className="text-center text-2xl">Or</div>
         </form>
         <div
           {...getRootProps({
@@ -127,28 +139,50 @@ export default function Csv2Json() {
           <h4>Rejected files</h4>
           <ul>{fileRejectionItems}</ul>
         </aside>
-        <button className="w-full rounded bg-rose-400/50 py-2 px-4 hover:opacity-80 dark:bg-blue-300" onClick={handleOnDrop}>
-          Change!
-        </button>
       </Card>
-      <Card>
-        <div className="whitespace-pre">{inputValue}</div>
-        <div className="flex flex-col gap-4">
-          {rows?.map((item: { [key: string]: string }, idx) => {
-            if (!item) return null;
-            return (
-              <div className="flex flex-wrap gap-4 bg-rose-100 p-2 text-center text-xl dark:bg-slate-600" key={idx}>
-                {Object.keys(item).map((key, idx2) => {
-                  return (
-                    <div className="bg-rose-300 dark:bg-slate-500" key={idx2}>
-                      <div className="bg-rose-400 px-2 text-red-100 dark:bg-slate-400">{key}</div>
-                      <div className="bg-rose-200 px-2 dark:bg-slate-700">{item[key]}</div>
-                    </div>
-                  );
-                })}
-              </div>
-            );
-          })}
+      <Card title="转换结果">
+        <div className="grid grid-cols-3 gap-4 md:grid-cols-1">
+          <div className="flex flex-col items-center gap-2">
+            <Button onClick={handleChange} type="primary" className="w-full rounded text-2xl" size="large">
+              开始转换！
+            </Button>
+            <div className="text-2xl">待转换对象如下：</div>
+            <div className="whitespace-pre">{inputValue}</div>
+          </div>
+          <div className="flex flex-col items-center gap-2 text-2xl">
+            <div className="flex items-center justify-center gap-2">
+              转换 Json 如下👇
+              <Button onClick={onCopy} type="primary" className="rounded text-2xl" size="large">
+                复制
+              </Button>
+            </div>
+            <textarea
+              className="h-44 w-full rounded border-2 border-rose-300 bg-rose-100 p-1 text-xl outline-none dark:border-blue-300 dark:bg-sky-700"
+              value={inputJsonStr}
+              onChange={onInputJsonStrChange}
+            />
+          </div>
+          <div className="flex flex-col items-center gap-4">
+            {rows?.map((item: { [key: string]: string }, idx) => {
+              if (!item) return null;
+              return (
+                <div
+                  className="flex flex-wrap items-center justify-center gap-4 bg-rose-100 p-2 text-center text-xl dark:bg-slate-600"
+                  key={idx}
+                >
+                  {idx}
+                  {Object.keys(item).map((key, idx2) => {
+                    return (
+                      <div className="bg-rose-300 dark:bg-slate-500" key={idx2}>
+                        <div className="bg-rose-400 px-2 text-red-100 dark:bg-slate-400">{key}</div>
+                        <div className="bg-rose-200 px-2 dark:bg-slate-700">{item[key]}</div>
+                      </div>
+                    );
+                  })}
+                </div>
+              );
+            })}
+          </div>
         </div>
       </Card>
     </motion.div>

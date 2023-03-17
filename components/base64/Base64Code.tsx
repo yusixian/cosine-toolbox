@@ -3,6 +3,7 @@ import { Base64 } from 'js-base64';
 import { useCallback } from 'react';
 import { toast } from 'react-toastify';
 import { useInput } from '../../hooks/useInput';
+import Button from '../Button';
 import Card from '../Card';
 
 type Base64CodeProps = {
@@ -56,12 +57,12 @@ export function Base64Code({ className }: Base64CodeProps) {
               placeholder="请输入需要Base64编码的文本，如：我是一个文本"
             />
             <div className="grid grid-cols-2 gap-4 text-2xl md:grid-cols-1">
-              <button className="rounded bg-rose-400/50 py-2 px-4 hover:opacity-80 dark:bg-blue-300" onClick={encodeBase64}>
+              <Button onClick={encodeBase64} type="primary" className="rounded" size="large">
                 Base64编码 👇
-              </button>
-              <button className="rounded bg-rose-400/50 py-2 px-4 hover:opacity-80 dark:bg-blue-300" onClick={decodeBase64}>
+              </Button>
+              <Button onClick={decodeBase64} type="primary" className="rounded" size="large">
                 Base64解码 👆
-              </button>
+              </Button>
             </div>
             <textarea
               className="h-24 w-full rounded border-2 border-rose-300 bg-rose-100 p-1 outline-none dark:border-blue-300 dark:bg-sky-700"

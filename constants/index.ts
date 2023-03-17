@@ -8,17 +8,23 @@ export type ToolType = {
   type: RouterType;
   title: string; // unique
   pageTitle?: string;
+  desc?: string;
+  exampleImage?: string;
 };
 export const tools: ToolType[] = [
   {
     type: RouterType.CSV2JSON,
-    title: 'CSV转JSON',
-    pageTitle: 'CSV转JSON - 在线转换文档文件',
+    title: 'CSV转JSON数组',
+    pageTitle: 'CSV转JSON数组 - 在线转换文档文件',
+    desc: '可将CSV文件转换为json对象数组，也可手动输入',
+    exampleImage: '/img/examples/csv2json.webp',
   },
   {
     type: RouterType.BASE64_UTIL,
     title: 'base64 通用工具',
     pageTitle: 'Base64 通用工具',
+    desc: '包括Base64编码解码、Base64图片批量下载等功能',
+    exampleImage: '/img/examples/base64Util.webp',
   },
 ];
 
