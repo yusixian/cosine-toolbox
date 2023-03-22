@@ -15,14 +15,14 @@ export default function Csv2Json() {
       'text/csv': ['.csv'],
     },
   });
-  const [rows, setRows] = useState<
+  const [results, setResults] = useState<
     {
       [key: string]: string;
     }[]
   >([]);
   const { inputValue, setInputValue, onInputChange } = useInput(csvExample);
   const { inputValue: inputJsonStr, setInputValue: setInputJsonStr, onInputChange: onInputJsonStrChange } = useInput('');
-
+  const [convertTargetObj, setConvertTargetObj] = useState('');
   const acceptedFileItems = acceptedFiles.map((file) => (
     <li key={(file as any).path}>
       {(file as any).path} - {file.size} bytes
@@ -42,11 +42,11 @@ export default function Csv2Json() {
 
   const parseCSV = (str: string) => {
     const lines = str.split('\n');
-    const headers = lines[0].split(/,s*(?![^"]*",)/);
-    console.log({ lines, str });
+    const headers = lines[0].split(/,\s*(?![^"]*",)/);
+    // console.log({ lines, str });
     const rows: { [key: string]: string }[] = [];
     for (let i = 1; i < lines.length; i++) {
-      const values = lines[i].split(/,s*(?![^"]*",)/); // https://www.cnblogs.com/ae6623/p/4416485.html
+      const values = lines[i].split(/,\s*(?![^"]*",)/); // https://www.cnblogs.com/ae6623/p/4416485.html
       const row: { [key: string]: string } = {};
       for (let j = 0; j < headers.length; j++) {
         let value = values[j];
@@ -58,24 +58,26 @@ export default function Csv2Json() {
       }
       console.log({ values, row });
       rows.push(row);
-      setRows(rows);
+      setResults(rows);
     }
   };
-
-  const handleChange = () => {
-    console.log({ acceptedFiles, inputValue });
-    if (!acceptedFiles?.length && !inputValue) return;
-    if (!acceptedFiles?.length) {
-      parseCSV(inputValue);
-      return;
-    }
+  useEffect(() => {
+    if (!acceptedFiles?.length) return;
     const reader = new FileReader();
     reader.onload = () => {
       const result = reader.result;
       if (!result || typeof result !== 'string') return;
-      parseCSV(result);
+      setConvertTargetObj(result);
     };
     reader.readAsText(acceptedFiles[0]);
+  }, [acceptedFiles]);
+
+  const handleChange = () => {
+    if (!convertTargetObj) {
+      toast.error('暂无待转换对象！请点击Submit提交或拖拽文件');
+      return;
+    }
+    parseCSV(convertTargetObj);
   };
 
   const handleSubmit = (e: any) => {
@@ -85,6 +87,7 @@ export default function Csv2Json() {
       return;
     }
     const newString = '' + inputValue;
+    setConvertTargetObj(newString);
     console.log({ newString });
   };
 
@@ -100,8 +103,8 @@ export default function Csv2Json() {
   };
 
   useEffect(() => {
-    setInputJsonStr(JSON.stringify(rows));
-  }, [rows, setInputJsonStr]);
+    setInputJsonStr(JSON.stringify(results));
+  }, [results, setInputJsonStr]);
 
   return (
     <motion.div layoutId={RouterType.CSV2JSON} className="flex h-full w-full flex-col gap-4 px-4 text-xl">
@@ -121,6 +124,9 @@ export default function Csv2Json() {
             value={inputValue}
             onChange={onInputChange}
           />
+          <Button isSubmit onClick={() => setInputValue(csvExample)} type="primary" className="rounded text-2xl" size="large">
+            Submit
+          </Button>
           <div className="text-center text-2xl">Or</div>
         </form>
         <div
@@ -147,7 +153,9 @@ export default function Csv2Json() {
               开始转换！
             </Button>
             <div className="text-2xl">待转换对象如下：</div>
-            <div className="whitespace-pre">{inputValue}</div>
+            <div className="w-full overflow-scroll whitespace-pre rounded border-2 border-rose-300 bg-rose-100 p-2 text-xl dark:border-blue-300 dark:bg-sky-700">
+              {convertTargetObj}
+            </div>
           </div>
           <div className="flex flex-col items-center gap-2 text-2xl">
             <div className="flex items-center justify-center gap-2">
@@ -157,20 +165,20 @@ export default function Csv2Json() {
               </Button>
             </div>
             <textarea
-              className="h-44 w-full rounded border-2 border-rose-300 bg-rose-100 p-1 text-xl outline-none dark:border-blue-300 dark:bg-sky-700"
+              className="h-44 w-full rounded border-2 border-rose-300 bg-rose-100 p-2 text-xl outline-none dark:border-blue-300 dark:bg-sky-700"
               value={inputJsonStr}
               onChange={onInputJsonStrChange}
             />
           </div>
           <div className="flex flex-col items-center gap-4">
-            {rows?.map((item: { [key: string]: string }, idx) => {
+            {results?.map((item: { [key: string]: string }, idx) => {
               if (!item) return null;
               return (
                 <div
-                  className="flex flex-wrap items-center justify-center gap-4 bg-rose-100 p-2 text-center text-xl dark:bg-slate-600"
+                  className="flex flex-wrap items-center justify-center gap-4 rounded border-2 border-rose-300 bg-rose-100 p-2 text-center text-xl outline-none dark:border-blue-300 dark:bg-sky-700"
                   key={idx}
                 >
-                  {idx}
+                  <span className="text-sg text-4xl text-shadow-lg">{idx}</span>
                   {Object.keys(item).map((key, idx2) => {
                     return (
                       <div className="bg-rose-300 dark:bg-slate-500" key={idx2}>
