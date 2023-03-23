@@ -13,7 +13,7 @@ export default function Layout({ children }: React.PropsWithChildren<{}>) {
       )}
     >
       <Header />
-      <main className="relative h-full w-full max-w-screen-xl flex-grow">{children}</main>
+      <main className="relative h-full w-full flex-grow">{children}</main>
       <Footer />
     </div>
   );

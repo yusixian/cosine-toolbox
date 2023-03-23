@@ -1,7 +1,8 @@
 import { IconType } from '../components/Icon/type';
+import areaData from 'china-area-data';
 
 export enum RouterType {
-  CSV2JSON = 'csv2json',
+  JSON_UTIL = 'jsonUtil',
   BASE64_UTIL = 'base64util',
 }
 export type ToolType = {
@@ -13,11 +14,12 @@ export type ToolType = {
 };
 export const tools: ToolType[] = [
   {
-    type: RouterType.CSV2JSON,
-    title: 'CSV转JSON数组',
-    pageTitle: 'CSV转JSON数组\n在线转换文档文件',
-    desc: '可将CSV文件转换为json对象数组，也可手动输入',
-    exampleImage: '/img/examples/csv2json.webp',
+    type: RouterType.JSON_UTIL,
+    title: 'JSON 通用工具',
+    pageTitle: 'JSON 通用工具\n在线转换文档文件',
+    desc: `CSV转JSON：可将CSV格式转换为json对象数组
+JS对象转JSON: 可将JS对象转换为JSON字符串`,
+    exampleImage: '/img/examples/jsonUtil.webp',
   },
   {
     type: RouterType.BASE64_UTIL,
@@ -62,3 +64,19 @@ export const socialInfos: { [type in SocialType]: SociaInfo } = {
     desc: '博客地址',
   },
 };
+
+export const CityMap: { [key: string]: string } = (function () {
+  const CityMap: { [key: string]: string } = {};
+  const provinces = areaData['86'];
+  for (let i = 11; i <= 71; ++i) {
+    const proNum = i * 10000;
+    const cites = areaData[proNum];
+    const keys = Object.keys(cites ?? {});
+    keys.forEach((key) => {
+      const city = cites[key];
+      if (city === '市辖区') CityMap[provinces[proNum]] = provinces[proNum];
+      else CityMap[city] = provinces[proNum];
+    });
+  }
+  return CityMap;
+})();

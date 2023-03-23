@@ -46,7 +46,7 @@ export function Base64Code({ className }: Base64CodeProps) {
 
   return (
     <div className={clsx('flex flex-col gap-2', className)}>
-      <div className="text-center text-2xl">Base64 编解码工具</div>
+      <div className="text-center text-3xl">Base64 编解码工具</div>
       <Card className="w-full">
         <div className="flex flex-col gap-2 text-rose-500/70 dark:text-white">
           <form className="flex flex-col gap-3">

@@ -17,7 +17,7 @@ const ToolList = () => {
           if (!Object.values(RouterType).includes(type as RouterType)) return null;
           return (
             <Card layoutId={type} key={type} title={title} onClick={() => router.push(`/${type}`)} clickable showArrow>
-              <div className="text-lg">{desc}</div>
+              <div className="whitespace-pre text-lg">{desc}</div>
               {showExample && exampleImage && <img src={exampleImage} alt={type} className="w-50 max-h-80 object-contain" />}
             </Card>
           );
