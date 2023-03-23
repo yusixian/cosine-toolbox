@@ -24,7 +24,7 @@ export function UrlCode({ className }: UrlCodeProps) {
           const url = inputPlain.slice(0, idx + 1) + encodeURIComponent(inputPlain.slice(idx + 1));
           setInputUrl(url);
         } else {
-          setInputUrl(encodeURI(inputPlain));
+          setInputUrl(encodeURIComponent(inputPlain));
         }
         toast('🦄 Url编码成功！');
       } catch (e) {
