@@ -1,5 +1,6 @@
+import { Select } from 'antd';
 import clsx from 'clsx';
-import { useCallback } from 'react';
+import { useCallback, useState } from 'react';
 import { toast } from 'react-toastify';
 import { urlDecodeExample, urlEncodeExample } from '../../constants/examples';
 import { useInput } from '../../hooks/useInput';
@@ -12,35 +13,46 @@ type UrlCodeProps = {
 export function UrlCode({ className }: UrlCodeProps) {
   const { inputValue: inputPlain, onInputChange: onInputPlainChange, setInputValue: setInputPlain } = useInput();
   const { inputValue: inputUrlText, onInputChange: onInputUrlChange, setInputValue: setInputUrl } = useInput();
-  console.log({ inputPlain, inputUrlText });
+  const [mode, setMode] = useState('query');
 
   const encodeUrl = useCallback(
     (e: any) => {
-      e.preventDefault();
+      e?.preventDefault();
       try {
-        setInputUrl(encodeURI(inputPlain));
+        const idx = inputPlain.search(/\?/);
+        if (mode === 'query' && idx !== -1) {
+          const url = inputPlain.slice(0, idx + 1) + encodeURIComponent(inputPlain.slice(idx + 1));
+          setInputUrl(url);
+        } else {
+          setInputUrl(encodeURI(inputPlain));
+        }
         toast('🦄 Url编码成功！');
       } catch (e) {
         toast.error('encodeUrl error' + e);
         console.error('encodeUrl error', e);
       }
     },
-    [inputPlain, setInputUrl],
+    [inputPlain, mode, setInputUrl],
   );
 
   const decodeUrl = useCallback(
     (e: any) => {
-      e.preventDefault();
+      e?.preventDefault();
       try {
-        const plain = decodeURI(inputUrlText);
-        setInputPlain(plain);
+        if (mode === 'query') {
+          const idx = inputUrlText.search(/\?/);
+          const plain = inputUrlText.slice(0, idx + 1) + decodeURIComponent(inputUrlText.slice(idx + 1));
+          setInputPlain(plain);
+        } else {
+          setInputPlain(decodeURIComponent(inputUrlText));
+        }
         toast('🦄 Url解码成功！');
       } catch (e) {
         toast.error('decodeUrl error' + e);
         console.error('decodeUrl error', e);
       }
     },
-    [inputUrlText, setInputPlain],
+    [inputUrlText, mode, setInputPlain],
   );
 
   return (
@@ -63,6 +75,14 @@ export function UrlCode({ className }: UrlCodeProps) {
               value={inputPlain}
               onChange={onInputPlainChange}
               placeholder="请输入需要Url编码的文本，如：我是一个文本"
+            />
+            <Select
+              defaultValue="query"
+              onChange={(value: string) => setMode(value)}
+              options={[
+                { value: 'query', label: 'Encode/Decode Query Component' },
+                { value: 'all', label: 'Encode/Decode All Component' },
+              ]}
             />
             <div className="grid grid-cols-2 gap-4 text-2xl md:grid-cols-1">
               <Button onClick={encodeUrl} type="primary" className="rounded" size="large">
