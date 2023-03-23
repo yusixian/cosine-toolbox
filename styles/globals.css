@@ -8,6 +8,38 @@
   }
 }
 
+@layer base {
+  *::-webkit-scrollbar {
+    display: none;
+    width: 0;
+    background: transparent;
+  }
+
+  .custom-scroll-bar::-webkit-scrollbar {
+    display: block;
+    background: rgba(0, 0, 0, 0.1);
+    height: 0.5rem;
+    width: 0.5rem;
+    border-radius: 0.625rem;
+  }
+
+  .custom-scroll-bar::-webkit-scrollbar-thumb {
+    background: #fb7185;
+    border-radius: 0.625rem;
+  }
+  .dark .custom-scroll-bar::-webkit-scrollbar {
+    display: block;
+    background: rgba(0, 0, 0, 0.1);
+    height: 0.5rem;
+    width: 0.5rem;
+    border-radius: 0.625rem;
+  }
+
+  .dark .custom-scroll-bar::-webkit-scrollbar-thumb {
+    background: #2c69b2;
+    border-radius: 0.625rem;
+  }
+}
 .cos__icon {
   width: 1em;
   height: 1em;

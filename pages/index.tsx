@@ -1,7 +1,6 @@
 import SocialBar from '../components/Social';
 import type { NextPage } from 'next';
 import ToolList from '../components/ToolList';
-
 const Home: NextPage = () => {
   return (
     <div className="min-h-full px-8 ">

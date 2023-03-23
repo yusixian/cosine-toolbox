@@ -1,14 +1,14 @@
-import { motion } from 'framer-motion';
+import copy from 'copy-to-clipboard';
+import dynamic from 'next/dynamic';
 import { useEffect, useState } from 'react';
 import { useDropzone } from 'react-dropzone';
-import Card from '../../components/Card';
-import { RouterType } from '../../constants';
+import { toast } from 'react-toastify';
 import { csvExample } from '../../constants/examples';
 import { useInput } from '../../hooks/useInput';
-import copy from 'copy-to-clipboard';
-import { toast } from 'react-toastify';
-import Button from '../../components/Button';
+import Button from '../Button';
+import Card from '../Card';
 
+const DynamicReactJson = dynamic(import('react-json-view'), { ssr: false });
 export default function Csv2Json() {
   const { acceptedFiles, fileRejections, getRootProps, getInputProps } = useDropzone({
     accept: {
@@ -107,15 +107,10 @@ export default function Csv2Json() {
   }, [results, setInputJsonStr]);
 
   return (
-    <motion.div layoutId={RouterType.CSV2JSON} className="flex h-full w-full flex-col gap-4 px-4 text-xl">
+    <div>
+      <div className="mb-4 text-center text-3xl">CSV 转 JSON数组</div>
       <Card title="填入待转换csv文本或拖拽文件" className="flex flex-col items-center px-4 dark:text-white">
         <form onSubmit={handleSubmit} className="flex w-full flex-col gap-3">
-          {/* <button
-            className="rounded bg-rose-400/50  py-2 px-4 text-2xl hover:opacity-80 dark:bg-blue-300"
-            onClick={() => setInputValue(csvExample)}
-          >
-            示例
-          </button> */}
           <Button onClick={() => setInputValue(csvExample)} type="primary" className="rounded text-2xl" size="large">
             示例
           </Button>
@@ -124,7 +119,7 @@ export default function Csv2Json() {
             value={inputValue}
             onChange={onInputChange}
           />
-          <Button isSubmit onClick={() => setInputValue(csvExample)} type="primary" className="rounded text-2xl" size="large">
+          <Button isSubmit type="primary" className="rounded text-2xl" size="large">
             Submit
           </Button>
           <div className="text-center text-2xl">Or</div>
@@ -153,7 +148,7 @@ export default function Csv2Json() {
               开始转换！
             </Button>
             <div className="text-2xl">待转换对象如下：</div>
-            <div className="w-full overflow-scroll whitespace-pre rounded border-2 border-rose-300 bg-rose-100 p-2 text-xl dark:border-blue-300 dark:bg-sky-700">
+            <div className="custom-scroll-bar w-full overflow-scroll whitespace-pre rounded border-2 border-rose-300 bg-rose-100 p-2 text-xl dark:border-blue-300 dark:bg-sky-700">
               {convertTargetObj}
             </div>
           </div>
@@ -164,13 +159,16 @@ export default function Csv2Json() {
                 复制
               </Button>
             </div>
+            <div className="custom-scroll-bar max-h-[25rem] w-full overflow-scroll">
+              <DynamicReactJson iconStyle="circle" collapsed={1} theme="monokai" src={results} />
+            </div>
             <textarea
               className="h-44 w-full rounded border-2 border-rose-300 bg-rose-100 p-2 text-xl outline-none dark:border-blue-300 dark:bg-sky-700"
               value={inputJsonStr}
               onChange={onInputJsonStrChange}
             />
           </div>
-          <div className="flex flex-col items-center gap-4">
+          <div className="custom-scroll-bar flex max-h-[50rem] flex-col items-center gap-4 overflow-auto">
             {results?.map((item: { [key: string]: string }, idx) => {
               if (!item) return null;
               return (
@@ -193,6 +191,6 @@ export default function Csv2Json() {
           </div>
         </div>
       </Card>
-    </motion.div>
+    </div>
   );
 }
