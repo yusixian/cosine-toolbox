@@ -12,7 +12,7 @@ const ToolList = () => {
       <Button className="rounded text-xl" type="primary" size="large" onClick={() => setShowExample(!showExample)}>
         {showExample ? '关闭示例图片' : '显示示例图片'}
       </Button>
-      <div className="mx-8 flex items-start justify-center gap-4">
+      <div className="mx-8 flex flex-wrap items-start justify-center gap-4">
         {tools.map(({ title, type, desc, exampleImage }) => {
           if (!Object.values(RouterType).includes(type as RouterType)) return null;
           return (

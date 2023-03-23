@@ -15,7 +15,7 @@ export const tools: ToolType[] = [
   {
     type: RouterType.CSV2JSON,
     title: 'CSV转JSON数组',
-    pageTitle: 'CSV转JSON数组 - 在线转换文档文件',
+    pageTitle: 'CSV转JSON数组\n在线转换文档文件',
     desc: '可将CSV文件转换为json对象数组，也可手动输入',
     exampleImage: '/img/examples/csv2json.webp',
   },

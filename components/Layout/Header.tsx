@@ -17,12 +17,12 @@ export function Header() {
   const { theme } = useTheme();
 
   return (
-    <header className="flex h-16 w-full items-center justify-between gap-2 p-2">
+    <header className="min-h-20 flex w-full items-center justify-between gap-2 px-2 py-4">
       <ToastContainer theme={theme as Theme} autoClose={2000} />
-      <div className="flex-grow cursor-pointer" onClick={() => router.push('/')}>
+      <div className="cursor-pointer" onClick={() => router.push('/')}>
         <img src="/favicon.ico" alt="logo" className="aspect-square h-12" />
       </div>
-      <div className="flex-grow cursor-pointer text-3xl" onClick={() => router.push('/')}>
+      <div className="flex-grow cursor-pointer whitespace-pre text-center text-3xl" onClick={() => router.push('/')}>
         {renderTitle()}
       </div>
       <Icon className="text-4xl" type={IconType.LIGHT_OR_DARK} onClick={toggleTheme} />
