@@ -19,7 +19,7 @@ export function NeteaseOuter({ className }: NeteaseOuterProps) {
       if (isNaN(id)) {
         throw new Error('请输入数字');
       }
-      return `http://music.163.com/song/media/outer/url?id=${id}.mp3`;
+      return `https://music.163.com/song/media/outer/url?id=${id}.mp3`;
     } catch (e) {
       toast.error((e as any)?.message);
       return '';
