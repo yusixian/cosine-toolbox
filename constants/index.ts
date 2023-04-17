@@ -42,7 +42,7 @@ JS对象转JSON: 可将JS对象转换为JSON字符串`,
     title: '♪ 音乐通用工具',
     pageTitle: '♪ 音乐通用工具',
     desc: '包括 某wyy音乐外链生成',
-    // exampleImage: '/img/examples/urlUtil.webp',
+    exampleImage: '/img/examples/musicUtil.webp',
   },
 ];
 
