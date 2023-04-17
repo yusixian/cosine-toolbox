@@ -1,13 +1,12 @@
 import copy from 'copy-to-clipboard';
-import dynamic from 'next/dynamic';
 import { useMemo, useState } from 'react';
 import { toast } from 'react-toastify';
 import { jsObj2JsonExample } from '../../constants/examples';
 import { useInput } from '../../hooks/useInput';
 import Button from '../Button';
 import Card from '../Card';
+import DynamicReactJson from '../main/DynamicReactJson';
 
-const DynamicReactJson = dynamic(import('react-json-view'), { ssr: false });
 export default function JsObj2Json() {
   const { inputValue, setInputValue, onInputChange } = useInput(jsObj2JsonExample);
   const [convertTargetObj, setConvertTargetObj] = useState({});
@@ -63,7 +62,7 @@ export default function JsObj2Json() {
             <DynamicReactJson iconStyle="circle" collapsed={1} theme="monokai" src={convertTargetObj} />
           </div>
           <textarea
-            className="h-44 w-full whitespace-pre rounded border-2 border-rose-300 bg-rose-100 p-2 text-xl outline-none dark:border-blue-300 dark:bg-sky-700"
+            className="h-44 w-full whitespace-pre-wrap rounded border-2 border-rose-300 bg-rose-100 p-2 text-xl outline-none dark:border-blue-300 dark:bg-sky-700"
             value={jsonStr}
             readOnly
           />
