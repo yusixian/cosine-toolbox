@@ -8,7 +8,7 @@ export default function Document() {
   return (
     <Html>
       <Head>
-        <meta name="description" content="一个专为前端程序员而生的工具站点~" />
+        <meta name="description" content="🌸 一个简洁实用包罗万象的工具站点喵~" />
         <link rel="icon" href="/favicon.ico" />
         <link
           href="https://fonts.googleapis.com/css2?family=Henny+Penny&family=Permanent+Marker&family=Poppins:wght@400;500;600;700&display=swap"

@@ -5,7 +5,7 @@ import { RouterType } from '../../constants';
 
 export default function Base64Util() {
   return (
-    <motion.div layoutId={RouterType.BASE64_UTIL} className="grid h-full w-full grid-cols-2 gap-8 px-4 md:grid-cols-1">
+    <motion.div layoutId={RouterType.BASE64_UTIL} className="grid h-full w-full grid-cols-2 gap-4 px-4 md:grid-cols-1">
       <Base64Code />
       <Base64Download />
     </motion.div>

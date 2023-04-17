@@ -1,3 +1,4 @@
+export const neteaseMusicIdExample = '2034742057';
 export const csvExample = `id,name,age,gender
 1,Roberta,39,M
 2,Oliver,25,M

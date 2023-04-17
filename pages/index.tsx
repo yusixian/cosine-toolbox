@@ -6,7 +6,7 @@ const Home: NextPage = () => {
     <div className="min-h-full px-8 ">
       <main className="flex flex-col items-center justify-center gap-6 py-16">
         <h1 className="text-center text-3xl">余弦工具箱</h1>
-        <p className="text-center text-xl	">🌸 一个专为前端程序员而生的工具站点</p>
+        <p className="text-center text-xl	">🌸 一个简洁实用包罗万象的工具站点喵~</p>
         <SocialBar />
         <ToolList />
       </main>

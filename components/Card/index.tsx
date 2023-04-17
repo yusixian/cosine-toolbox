@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { MouseEventHandler, ReactNode } from 'react';
 import Icon from '../Icon';
 import { IconType } from '../Icon/type';
+import { twMerge } from 'tailwind-merge';
 
 type CardProps = {
   title?: string;
@@ -20,9 +21,11 @@ const Card = ({ title, coverUrl, layoutId, className, showArrow = false, clickab
       layoutId={layoutId}
       whileHover={clickable ? { y: -5 } : {}}
       transition={{ ease: 'linear' }}
-      className={clsx(
-        'flex min-w-[12.5rem] flex-col gap-2 rounded bg-rose-200 p-4 text-rose-400 shadow-xl dark:bg-sky-800 dark:text-sky-500',
-        { 'cursor-pointer': clickable },
+      className={twMerge(
+        clsx(
+          'flex min-w-[12.5rem] flex-col gap-2 rounded bg-rose-200 p-4 text-rose-400 shadow-xl dark:bg-sky-800 dark:text-sky-500',
+          { 'cursor-pointer': clickable },
+        ),
         className,
       )}
       onClick={onClick}

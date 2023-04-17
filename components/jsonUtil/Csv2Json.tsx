@@ -1,5 +1,3 @@
-import copy from 'copy-to-clipboard';
-import dynamic from 'next/dynamic';
 import { useEffect, useState } from 'react';
 import { useDropzone } from 'react-dropzone';
 import { toast } from 'react-toastify';
@@ -7,8 +5,9 @@ import { csvExample } from '../../constants/examples';
 import { useInput } from '../../hooks/useInput';
 import Button from '../Button';
 import Card from '../Card';
+import CopyableResult from '../main/CopyableResult';
+import DynamicReactJson from '../main/DynamicReactJson';
 
-const DynamicReactJson = dynamic(import('react-json-view'), { ssr: false });
 export default function Csv2Json() {
   const { acceptedFiles, fileRejections, getRootProps, getInputProps } = useDropzone({
     accept: {
@@ -20,8 +19,9 @@ export default function Csv2Json() {
       [key: string]: string;
     }[]
   >([]);
+
   const { inputValue, setInputValue, onInputChange } = useInput(csvExample);
-  const { inputValue: inputJsonStr, setInputValue: setInputJsonStr, onInputChange: onInputJsonStrChange } = useInput('');
+  const { inputValue: inputJsonStr, setInputValue: setInputJsonStr } = useInput('');
   const [convertTargetObj, setConvertTargetObj] = useState('');
   const acceptedFileItems = acceptedFiles.map((file) => (
     <li key={(file as any).path}>
@@ -91,17 +91,6 @@ export default function Csv2Json() {
     console.log({ newString });
   };
 
-  const onCopy = (e: any) => {
-    e?.preventDefault();
-    try {
-      copy(inputJsonStr);
-      toast('WOW! 已经成功复制到剪切板啦=v=');
-    } catch (e) {
-      toast.error('好像出了点错误TwT');
-      console.error('onCopy Error', e);
-    }
-  };
-
   useEffect(() => {
     setInputJsonStr(JSON.stringify(results));
   }, [results, setInputJsonStr]);
@@ -148,27 +137,18 @@ export default function Csv2Json() {
               开始转换！
             </Button>
             <div className="text-2xl">待转换对象如下：</div>
-            <div className="custom-scroll-bar w-full overflow-scroll whitespace-pre rounded border-2 border-rose-300 bg-rose-100 p-2 text-xl dark:border-blue-300 dark:bg-sky-700">
+            <div className="custom-scroll-bar w-full overflow-scroll whitespace-pre-wrap rounded border-2 border-rose-300 bg-rose-100 p-2 text-xl dark:border-blue-300 dark:bg-sky-700">
               {convertTargetObj}
             </div>
           </div>
           <div className="flex flex-col items-center gap-2 text-2xl">
-            <div className="flex items-center justify-center gap-2">
-              转换 Json 如下👇
-              <Button onClick={onCopy} type="primary" className="rounded text-2xl" size="large">
-                复制
-              </Button>
-            </div>
             <div className="custom-scroll-bar max-h-[25rem] w-full overflow-scroll">
               <DynamicReactJson iconStyle="circle" collapsed={1} theme="monokai" src={results} />
             </div>
-            <textarea
-              className="h-44 w-full rounded border-2 border-rose-300 bg-rose-100 p-2 text-xl outline-none dark:border-blue-300 dark:bg-sky-700"
-              value={inputJsonStr}
-              onChange={onInputJsonStrChange}
-            />
+            <CopyableResult copyText={inputJsonStr} />
           </div>
           <div className="custom-scroll-bar flex max-h-[50rem] flex-col items-center gap-4 overflow-auto">
+            <div className="text-2xl">Results</div>
             {results?.map((item: { [key: string]: string }, idx) => {
               if (!item) return null;
               return (
