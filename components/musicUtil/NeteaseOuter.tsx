@@ -11,9 +11,10 @@ type NeteaseOuterProps = {
   className?: string;
 };
 export function NeteaseOuter({ className }: NeteaseOuterProps) {
-  const { inputValue: inputId, onInputChange: onInputIdChange, setInputValue: setInputId } = useInput(neteaseMusicIdExample);
+  const { inputValue: inputId, onInputChange: onInputIdChange, setInputValue: setInputId } = useInput();
   const href = useMemo(() => {
     try {
+      if (!inputId) return '';
       const id = parseInt(inputId);
       if (isNaN(id)) {
         throw new Error('请输入数字');
@@ -21,6 +22,7 @@ export function NeteaseOuter({ className }: NeteaseOuterProps) {
       return `http://music.163.com/song/media/outer/url?id=${id}.mp3`;
     } catch (e) {
       toast.error((e as any)?.message);
+      return '';
     }
   }, [inputId]);
 
