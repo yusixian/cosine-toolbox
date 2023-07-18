@@ -1,3 +1,5 @@
+export const hexExample = '#3296e699';
+export const rgbaExample = 'rgba(50, 150, 230, 0.6)';
 export const neteaseMusicIdExample = '2034742057';
 export const csvExample = `id,name,age,gender
 1,Roberta,39,M

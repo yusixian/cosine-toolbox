@@ -6,6 +6,7 @@ export enum RouterType {
   BASE64_UTIL = 'base64Util',
   URL_UTIL = 'urlUtil',
   MUSIC_UTIL = 'musicUtil',
+  COLOR_UTIL = 'colorUtil',
 }
 export type ToolType = {
   type: RouterType;
@@ -36,6 +37,13 @@ JS对象转JSON: 可将JS对象转换为JSON字符串`,
     pageTitle: 'URL通用工具',
     desc: '包括 UrlDecode解码/UrlEncode编码',
     exampleImage: '/img/examples/urlUtil.webp',
+  },
+  {
+    type: RouterType.COLOR_UTIL,
+    title: '颜色通用工具',
+    pageTitle: '颜色通用工具',
+    desc: '包括 rgba/rgb 与 hex 值的相互转换',
+    // exampleImage: '/img/examples/musicUtil.webp',
   },
   {
     type: RouterType.MUSIC_UTIL,

@@ -12,7 +12,7 @@ const ToolList = () => {
       <Button className="rounded text-xl" type="primary" size="large" onClick={() => setShowExample(!showExample)}>
         {showExample ? '关闭示例图片' : '显示示例图片'}
       </Button>
-      <div className="flex flex-wrap justify-between gap-x-4 gap-y-8">
+      <div className="grid grid-cols-4 gap-x-4 gap-y-8 md:grid-cols-2">
         {tools.map(({ title, type, desc, exampleImage }) => {
           if (!Object.values(RouterType).includes(type as RouterType)) return null;
           return (
@@ -22,10 +22,6 @@ const ToolList = () => {
             </Card>
           );
         })}
-        <i className="h-0 w-96" />
-        <i className="h-0 w-96" />
-        <i className="h-0 w-96" />
-        <i className="h-0 w-80" />
       </div>
     </div>
   );
