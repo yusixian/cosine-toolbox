@@ -16,7 +16,7 @@ module.exports = {
       },
       colors: {
         'cos-primary': '#fb7185',
-        'cos-dark-primary': '#2c69b2',
+        'cos-dark-primary': '#93c5fd',
       },
       backgroundImage: {
         'cos-gradient': 'linear-gradient( 135deg, #ee9ca7 10%, #ffdde1 100%)',
