@@ -1,16 +1,24 @@
 'use client';
 
-import FloatGroup from '../widgets/global/FloatGroup';
-import { Footer } from './footer';
+import { ToastContainer } from 'react-toastify';
+import FloatGroup from '../widgets/floatGroup/FloatGroup';
 import { Header } from './header';
+import Sider from './sider';
+import { useTheme } from 'next-themes';
 
 export default function Root({ children }: React.PropsWithChildren<{}>) {
+  const { theme } = useTheme();
   return (
     <div className="flex min-h-screen flex-col text-black dark:text-white">
-      <Header />
+      <div className="relative flex flex-grow">
+        <Sider />
+        <main className="flex-grow">
+          <Header />
+          {children}
+        </main>
+      </div>
       <FloatGroup />
-      <main className="relative flex flex-grow flex-col">{children}</main>
-      <Footer className="mt-auto" />
+      <ToastContainer theme={theme} />
     </div>
   );
 }

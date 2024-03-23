@@ -16,7 +16,7 @@ dependencies:
     version: 4.17.12
   antd:
     specifier: ^5.15.3
-    version: 5.15.3(react-dom@18.2.0)(react@18.2.0)
+    version: 5.15.3(date-fns@3.6.0)(react-dom@18.2.0)(react@18.2.0)
   china-area-data:
     specifier: ^5.0.1
     version: 5.0.1
@@ -26,6 +26,9 @@ dependencies:
   copy-to-clipboard:
     specifier: ^3.3.3
     version: 3.3.3
+  date-fns:
+    specifier: ^3.6.0
+    version: 3.6.0
   file-saver:
     specifier: ^2.0.5
     version: 2.0.5
@@ -2251,7 +2254,7 @@ packages:
     resolution: {integrity: sha512-bN798gFfQX+viw3R7yrGWRqnrN2oRkEkUjjl4JNn4E8GxxbjtG3FbrEIIY3l8/hrwUwIeCZvi4QuOTP4MErVug==}
     engines: {node: '>=12'}
 
-  /antd@5.15.3(react-dom@18.2.0)(react@18.2.0):
+  /antd@5.15.3(date-fns@3.6.0)(react-dom@18.2.0)(react@18.2.0):
     resolution: {integrity: sha512-53dpdGbfwipHVbqITmppp8N16i+BscMzz8NUNwaJgxwSvO9VQh/NfC/90lqGq3I2oBmxQ8TzRIxzFVKD/9OhlQ==}
     peerDependencies:
       react: '>=16.9.0'
@@ -2286,7 +2289,7 @@ packages:
       rc-motion: 2.9.0(react-dom@18.2.0)(react@18.2.0)
       rc-notification: 5.3.0(react-dom@18.2.0)(react@18.2.0)
       rc-pagination: 4.0.4(react-dom@18.2.0)(react@18.2.0)
-      rc-picker: 4.3.0(dayjs@1.11.10)(react-dom@18.2.0)(react@18.2.0)
+      rc-picker: 4.3.0(date-fns@3.6.0)(dayjs@1.11.10)(react-dom@18.2.0)(react@18.2.0)
       rc-progress: 3.5.1(react-dom@18.2.0)(react@18.2.0)
       rc-rate: 2.12.0(react-dom@18.2.0)(react@18.2.0)
       rc-resize-observer: 1.4.0(react-dom@18.2.0)(react@18.2.0)
@@ -2875,6 +2878,10 @@ packages:
       es-errors: 1.3.0
       is-data-view: 1.0.1
     dev: true
+
+  /date-fns@3.6.0:
+    resolution: {integrity: sha512-fRHTG8g/Gif+kSh50gaGEdToemgfj74aRX3swtiouboip5JDLAyDE9F11nHMIcvOaXeOC6D7SpNhi7uFyB7Uww==}
+    dev: false
 
   /dayjs@1.11.10:
     resolution: {integrity: sha512-vjAczensTgRcqDERK0SR2XMwsF/tSvnvlv6VcF2GIhg6Sx4yOIt/irsr1RDJsKiIyBzJDpCoXiWWq28MqH2cnQ==}
@@ -5029,7 +5036,7 @@ packages:
       react-dom: 18.2.0(react@18.2.0)
     dev: false
 
-  /rc-picker@4.3.0(dayjs@1.11.10)(react-dom@18.2.0)(react@18.2.0):
+  /rc-picker@4.3.0(date-fns@3.6.0)(dayjs@1.11.10)(react-dom@18.2.0)(react@18.2.0):
     resolution: {integrity: sha512-bQNB/+NdW55jlQ5lPnNqF5J90Tq4SihLbAF7tzPBvGDJyoYmDgwLm4FN0ZB3Ot9i1v6vJY/1mgqZZTT9jbYc5w==}
     engines: {node: '>=8.x'}
     peerDependencies:
@@ -5052,6 +5059,7 @@ packages:
       '@babel/runtime': 7.24.1
       '@rc-component/trigger': 2.0.0(react-dom@18.2.0)(react@18.2.0)
       classnames: 2.5.1
+      date-fns: 3.6.0
       dayjs: 1.11.10
       rc-overflow: 1.3.2(react-dom@18.2.0)(react@18.2.0)
       rc-resize-observer: 1.4.0(react-dom@18.2.0)(react@18.2.0)

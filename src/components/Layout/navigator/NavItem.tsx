@@ -10,29 +10,15 @@ export type NavItemProps = {
   onClick?: () => void;
   className?: ClassValue;
   indicatorClass?: string;
-  type?: 'header' | 'sider';
   layoutIdPrefix?: string;
 };
-function NavItem({
-  selected,
-  icon,
-  name,
-  onClick,
-  className,
-  indicatorClass,
-  type = 'header',
-  layoutIdPrefix = 'header',
-}: NavItemProps) {
+function NavItem({ selected, icon, name, onClick, className, indicatorClass, layoutIdPrefix = 'header' }: NavItemProps) {
   return (
     <motion.div variants={delayOpenAnimVariants}>
       <div
         className={cn(
-          'relative flex h-full w-full cursor-pointer items-center justify-center text-base hover:opacity-70',
-          {
-            'text-white': selected && type !== 'header',
-            'text-primary': selected && type === 'header',
-            'z-0': type === 'sider',
-          },
+          'relative flex h-full w-full cursor-pointer items-center justify-center text-base',
+          selected ? 'text-primary' : ' hover:brightness-75',
           className,
         )}
         onClick={onClick}
@@ -41,13 +27,7 @@ function NavItem({
         {name}
         {selected && (
           <motion.div
-            className={cn(
-              'absolute inset-x-0 -bottom-0.5 border-t-2 border-primary',
-              {
-                'inset-0 -z-10 rounded-lg border-none': type === 'sider',
-              },
-              indicatorClass,
-            )}
+            className={cn('absolute inset-x-0 -bottom-0.5 border-t-2 border-primary', indicatorClass)}
             layoutId={`${layoutIdPrefix ?? 'header'}_tab_selected`}
           />
         )}

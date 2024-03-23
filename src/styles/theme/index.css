@@ -3,12 +3,16 @@
   /* tailwind color */
   --border: 240 5.9% 90%; /* #e4e4e7 */
   --background: 0, 0%, 100%; /* #ffffff */
+  --background-400: 0, 0%, 93%; /* #eee */
   --page-background: 210, 40%, 96%; /* #f1f5f9 */
+  --muted-foreground: 210, 6%, 21%; /* #333639 */
 }
 .dark {
   --box-bg-shadow: #000;
   /* tailwind color */
   --border: 0, 0%, 16%; /* #282828 */
   --background: 0, 0%, 14%; /* #232323 */
+  --background-400: 0, 0%, 27%; /* #444444 */
   --page-background: 0, 0%, 11%; /* #1c1c1c */
+  --muted-foreground: 0, 0%, 100%, 80%; /* #ffffffd1 */
 }

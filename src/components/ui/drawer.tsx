@@ -84,11 +84,11 @@ function Drawer({
       <FloatingPortal>
         <AnimatePresence onExitComplete={onExitComplete}>
           {open && (
-            <FloatingOverlay lockScroll className="relative bg-black/30 backdrop-blur-sm" style={{ zIndex }}>
+            <FloatingOverlay lockScroll className="relative bg-black/30" style={{ zIndex }}>
               <FloatingFocusManager context={context}>
                 <motion.div
                   className={cn(
-                    'bg-background absolute flex min-w-[10rem] flex-col p-0 md:min-w-[5rem]',
+                    'absolute flex min-w-[10rem] flex-col bg-background p-0 md:min-w-[5rem]',
                     posClass[position || 'left'],
                     fontVariants,
                     className,

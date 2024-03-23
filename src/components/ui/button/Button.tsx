@@ -4,10 +4,10 @@ import { ButtonHTMLAttributes, forwardRef, memo } from 'react';
 import { tv } from 'tailwind-variants';
 
 const buttonStyles = tv({
-  base: 'rounded-sm text-center fill-white font-semibold flex justify-center items-center',
+  base: 'rounded-sm text-center transition-colors p-1 fill-white flex justify-center items-center',
   variants: {
     variant: {
-      default: 'bg-white/10 hover:bg-white/20',
+      default: 'bg-gray-700/10 hover:bg-gray-700/20 dark:bg-white/10 dark:hover:bg-white/20',
       gradient: 'bg-gradient hover:brightness-110',
       warning: 'bg-orange/30 text-orange hover:brightness-110',
       error: 'bg-red hover:brightness-110',

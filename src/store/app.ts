@@ -1,5 +1,5 @@
 import { atom } from 'jotai';
 
-export const oneLevelTabSelectIdxAtom = atom<number>(0);
+export const oneLevelTabSelectIdxAtom = atom<string>('/');
 
-export const oneLevelMenuExpandAtom = atom<boolean>(false);
+export const siderExpandAtom = atom<boolean>(true);

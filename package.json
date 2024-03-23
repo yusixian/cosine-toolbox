@@ -16,6 +16,7 @@
     "china-area-data": "^5.0.1",
     "clsx": "^1.2.1",
     "copy-to-clipboard": "^3.3.3",
+    "date-fns": "^3.6.0",
     "file-saver": "^2.0.5",
     "framer-motion": "^10.18.0",
     "jotai": "^2.7.1",

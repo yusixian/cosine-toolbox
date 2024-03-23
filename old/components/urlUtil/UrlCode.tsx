@@ -5,8 +5,8 @@ import { toast } from 'react-toastify';
 import { urlDecodeExample, urlEncodeExample } from '../../constants/examples';
 import { useInput } from '../../hooks/useInput';
 import Button from '../Button';
-import Card from '../Card';
 import CopyableResult from '../main/CopyableResult';
+import { Card } from '@/components/ui/card';
 
 type UrlCodeProps = {
   className?: string;

@@ -1,9 +1,8 @@
 import Root from '@/components/layout/root';
-import { cn } from '@/lib/utils';
-import Providers from './providers';
 import { seoConfig } from '@/constants/site-config';
 import { fontVariants } from '@/constants/theme/font';
-import { ToastContainer } from 'react-toastify';
+import { cn } from '@/lib/utils';
+import Providers from './providers';
 
 import '@/styles/index.css';
 import 'react-toastify/dist/ReactToastify.css';
@@ -49,7 +48,6 @@ export default async function RootLayout(props: Props) {
         <Providers>
           <Root>{children}</Root>
         </Providers>
-        <ToastContainer />
       </body>
     </html>
   );
