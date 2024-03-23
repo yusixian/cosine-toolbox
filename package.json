@@ -17,6 +17,7 @@
     "copy-to-clipboard": "^3.3.3",
     "file-saver": "^2.0.5",
     "framer-motion": "^10.3.2",
+    "jotai": "^2.7.1",
     "js-base64": "^3.7.5",
     "lodash-es": "^4.17.21",
     "next": "13.2.1",
@@ -27,7 +28,6 @@
     "react-json-view": "^1.21.3",
     "react-toastify": "^9.1.1",
     "react-use": "^17.4.0",
-    "recoil": "^0.7.4",
     "tailwind-merge": "^1.12.0"
   },
   "devDependencies": {

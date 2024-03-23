@@ -6,8 +6,7 @@ import type { NextPage } from 'next';
 import type { AppProps } from 'next/app';
 import { ReactElement, ReactNode } from 'react';
 import Layout from '../components/Layout';
-import { RecoilRoot } from 'recoil';
-import { ThemeProvider } from 'next-themes';
+ import { ThemeProvider } from 'next-themes';
 
 type NextPageWithLayout = NextPage & {
   getLayout?: (page: ReactElement) => ReactNode;
@@ -20,12 +19,12 @@ function App({ Component, pageProps }: AppPropsWithLayout) {
   const getLayout = Component.getLayout ?? ((page) => <Layout>{page}</Layout>);
 
   return (
-    <RecoilRoot>
+    <>
       <Head>
         <title>cosine-toolbox</title>
       </Head>
       <ThemeProvider attribute="class">{getLayout(<Component {...pageProps} />)}</ThemeProvider>
-    </RecoilRoot>
+    </>
   );
 }
 
