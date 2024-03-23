@@ -1,7 +1,6 @@
 module.exports = {
   darkMode: 'class', // https://tailwindcss.com/docs/dark-mode
-  //
-  content: ['./src/pages/**/*.{js,ts,jsx,tsx}', './src/components/**/*.{js,ts,jsx,tsx}','./src/hook/**/*.{js,ts,jsx,tsx}'],
+  content: ['./src/app/**/*.{js,ts,jsx,tsx}', './src/components/**/*.{js,ts,jsx,tsx}', './src/hook/**/*.{js,ts,jsx,tsx}'],
   theme: {
     extend: {
       container: {
@@ -15,16 +14,34 @@ module.exports = {
         '2xl': '1366px',
       },
       colors: {
-        'cos-primary': '#fb7185',
-        'cos-dark-primary': '#93c5fd',
+        primary: '#fb7185',
+        'dark-primary': '#93c5fd',
+        blue: {
+          DEFAULT: '#43BBFF',
+          450: '#4383FF',
+        },
+        yellow: {
+          DEFAULT: '#FFE7AB',
+        },
+        orange: {
+          DEFAULT: '#FFAA2C',
+        },
+        red: {
+          DEFAULT: '#FF2358',
+        },
+        border: 'hsl(var(--border))',
+        background: 'hsl(var(--background))',
+        'page-background': 'hsl(var(--page-background))',
       },
       backgroundImage: {
-        'cos-gradient': 'linear-gradient( 135deg, #ee9ca7 10%, #ffdde1 100%)',
-        'cos-gradient-dark': 'linear-gradient(160deg, rgba(28,28,28,1) 0%, rgba(55,60,56,1) 100%)',
+        gradient: 'linear-gradient(to right, #eb3941, #f15e64, #e14e53, #e2373f)',
       },
       fontFamily: {
         poppins: 'var(--font-poppins)',
-        sc: 'var(--font-sc)',
+        FZYS: '方正悠宋 简 509R',
+        noto: 'Noto Serif SC',
+        candy: 'Candyshop',
+        fg: 'Fredericka the Great',
       },
     },
   },
