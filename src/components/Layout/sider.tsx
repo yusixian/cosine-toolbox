@@ -13,6 +13,7 @@ import { useCallback, useEffect } from 'react';
 import { useMediaQuery } from 'react-responsive';
 import Drawer from '../ui/drawer';
 import NavItem from './navigator/NavItem';
+import { cn } from '@/lib/utils';
 
 type SiderProps = {};
 const Sider = ({}: SiderProps) => {
@@ -30,12 +31,14 @@ const Sider = ({}: SiderProps) => {
   const renderContent = useCallback(() => {
     return (
       <div className="flex h-full w-60 flex-col justify-between gap-2 p-2">
-        <div className="flex flex-col">
+        <div className="flex flex-col gap-2">
           <div
-            className="cursor-pointer rounded border border-border bg-page-background px-2 py-1 hover:bg-background-400"
+            className={cn('cursor-pointer rounded border border-border bg-page-background px-2 py-1 hover:bg-background-400', {
+              'border-primary bg-primary/20 text-primary': !selectIdx1 || ['/', 'home'].includes(selectIdx1),
+            })}
             onClick={() => {
+              setSelectIdx1('');
               router.push('/');
-              setSelectIdx1('/');
             }}
           >
             Home
@@ -47,11 +50,16 @@ const Sider = ({}: SiderProps) => {
                 {components.map((tool) => {
                   return (
                     <div
-                      className="cursor-pointer rounded border border-border bg-page-background px-2 py-1 hover:bg-background-400"
+                      className={cn(
+                        'cursor-pointer rounded border border-border bg-page-background px-2 py-1 hover:bg-background-400',
+                        {
+                          'border-primary bg-primary/20 text-primary': selectIdx1 === tool.path,
+                        },
+                      )}
                       key={tool.path}
                       onClick={() => {
-                        router.push(tool.path);
                         setSelectIdx1(tool.path);
+                        router.push(tool.path);
                       }}
                     >
                       {tool.name}
@@ -69,7 +77,7 @@ const Sider = ({}: SiderProps) => {
         </div>
       </div>
     );
-  }, [buttons, router, setSelectIdx1]);
+  }, [buttons, router, selectIdx1, setSelectIdx1]);
   if (!isMounted) return null;
   return isMDScreen ? (
     <Drawer open={siderExpand} onOpenChange={(open) => setSiderExpand(open)} render={renderContent} />
