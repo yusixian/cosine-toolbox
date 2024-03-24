@@ -1,10 +1,10 @@
 import { ToolCategory } from './tools.types';
-import { tool as UrlEncoder } from './url-encoder';
+import { tool as urlEncoder } from './url-encoder';
 
 export const toolsByCategory: ToolCategory[] = [
   {
     name: 'Web',
-    components: [UrlEncoder],
+    components: [urlEncoder],
   },
 ];
 
