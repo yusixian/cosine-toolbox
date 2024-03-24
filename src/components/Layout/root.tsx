@@ -1,10 +1,10 @@
 'use client';
 
+import { useTheme } from 'next-themes';
 import { ToastContainer } from 'react-toastify';
 import FloatGroup from '../widgets/floatGroup/FloatGroup';
 import { Header } from './header';
 import Sider from './sider';
-import { useTheme } from 'next-themes';
 
 export default function Root({ children }: React.PropsWithChildren<{}>) {
   const { theme } = useTheme();
