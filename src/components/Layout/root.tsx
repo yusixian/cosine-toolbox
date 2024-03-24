@@ -12,7 +12,7 @@ export default function Root({ children }: React.PropsWithChildren<{}>) {
     <div className="flex min-h-screen flex-col text-black dark:text-white">
       <div className="relative flex flex-grow">
         <Sider />
-        <main className="flex-grow">
+        <main className="flex-shrink flex-grow">
           <Header />
           {children}
         </main>

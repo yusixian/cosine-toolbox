@@ -31,13 +31,15 @@ module.exports = {
         orange: {
           DEFAULT: '#FFAA2C',
         },
-        red: {
-          DEFAULT: '#FF2358',
-        },
+        gray: {},
         border: 'hsl(var(--border))',
         background: {
           400: 'hsl(var(--background-400))',
           DEFAULT: 'hsl(var(--background))',
+        },
+        foreground: {
+          DEFAULT: 'hsl(var(--foreground))',
+          hover: 'hsl(var(--foreground-hover))',
         },
         'muted-foreground': 'hsl(var(--muted-foreground))',
         'page-background': 'hsl(var(--page-background))',

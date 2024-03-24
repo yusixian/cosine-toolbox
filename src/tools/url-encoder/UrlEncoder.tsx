@@ -10,11 +10,20 @@ import CopyableResult from '../components/CopyableResult';
 import Select from '@/components/ui/select';
 import { motion } from 'framer-motion';
 
+const modeOpts = [
+  { value: 'query', label: '编码/解码 Query 部分' },
+  { value: 'all', label: '编码/解码所有部分' },
+];
 export function UrlEncoder() {
   const { inputValue: inputPlain, onInputChange: onInputPlainChange, setInputValue: setInputPlain } = useInput();
   const { inputValue: inputUrlText, onInputChange: onInputUrlChange, setInputValue: setInputUrl } = useInput();
-  const [mode, setMode] = useState('query');
+  const [mode, setMode] = useState('all');
   const [resUrl, setResUrl] = useState('');
+  const reset = useCallback(() => {
+    setInputPlain('');
+    setInputUrl('');
+    setResUrl('');
+  }, [setInputPlain, setInputUrl]);
 
   const encodeUrl = useCallback(
     (e: any) => {
@@ -64,18 +73,23 @@ export function UrlEncoder() {
   return (
     <motion.div layoutId="/url-encoder" className="flex flex-col gap-4">
       <Card className="flex max-w-screen-2xl flex-col gap-2">
-        <div className="grid grid-cols-3 gap-4 md:grid-cols-2">
-          <Button onClick={() => setInputPlain(urlEncodeExample)}>编码示例</Button>
-          <Button onClick={() => setInputUrl(urlDecodeExample)}>解码示例</Button>
+        <div className="flex flex-wrap gap-4 text-sm">
+          <Button className="flex-grow" onClick={() => setInputPlain(urlEncodeExample)}>
+            编码示例
+          </Button>
+          <Button className="flex-grow" onClick={() => setInputUrl(urlDecodeExample)}>
+            解码示例
+          </Button>
+          <Button className="flex-grow" onClick={reset} variant="primary">
+            重置
+          </Button>
           <Select
-            className="col-span-2"
+            wrapperClassName="flex-grow-[2]"
+            className="h-9"
             bordered
             value={mode}
             onChange={(value: string) => setMode(value)}
-            options={[
-              { value: 'query', label: '编码/解码 Query 部分' },
-              { value: 'all', label: '编码/解码所有' },
-            ]}
+            options={modeOpts}
           />
         </div>
         <div className="flex"></div>

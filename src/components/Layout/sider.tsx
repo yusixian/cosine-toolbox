@@ -1,19 +1,32 @@
 'use client';
 
-import { microDampingPreset } from '@/constants/anim';
 import { MD_SCREEN_QUERY } from '@/constants/theme/media';
 import { useIsMounted } from '@/hooks/common/useIsMounted';
 import { useNavItems } from '@/hooks/router';
+import { cn } from '@/lib/utils';
 import { oneLevelTabSelectIdxAtom, siderExpandAtom } from '@/store/app';
 import { toolsByCategory } from '@/tools';
 import { motion } from 'framer-motion';
 import { useAtom } from 'jotai';
 import { useRouter } from 'next/navigation';
-import { useCallback, useEffect } from 'react';
+import { PropsWithChildren, useCallback, useEffect } from 'react';
 import { useMediaQuery } from 'react-responsive';
 import Drawer from '../ui/drawer';
 import NavItem from './navigator/NavItem';
-import { cn } from '@/lib/utils';
+
+function SiderItem({ isSelected, onClick, children }: PropsWithChildren<{ isSelected?: boolean; onClick?: () => void }>) {
+  return (
+    <div
+      className={cn(
+        'cursor-pointer rounded border border-border bg-foreground px-2 py-1',
+        isSelected ? 'border-primary bg-primary/20 text-primary' : 'hover:bg-foreground-hover',
+      )}
+      onClick={onClick}
+    >
+      {children}
+    </div>
+  );
+}
 
 type SiderProps = {};
 const Sider = ({}: SiderProps) => {
@@ -30,40 +43,33 @@ const Sider = ({}: SiderProps) => {
 
   const renderContent = useCallback(() => {
     return (
-      <div className="flex h-full w-60 flex-col justify-between gap-2 p-2">
-        <div className="flex flex-col gap-2">
-          <div
-            className={cn('cursor-pointer rounded border border-border bg-page-background px-2 py-1 hover:bg-background-400', {
-              'border-primary bg-primary/20 text-primary': !selectIdx1 || ['/', 'home'].includes(selectIdx1),
-            })}
+      <div className="flex h-full w-full flex-col justify-between gap-2 px-3 pt-4">
+        <div className="flex flex-col gap-4">
+          <SiderItem
+            isSelected={!selectIdx1 || ['/', 'home'].includes(selectIdx1)}
             onClick={() => {
               setSelectIdx1('');
               router.push('/');
             }}
           >
             Home
-          </div>
+          </SiderItem>
           {toolsByCategory.map(({ name, components }, categoryIndex) => (
-            <div className="flex flex-col" key={categoryIndex}>
+            <div className="flex flex-col gap-2" key={categoryIndex}>
               <h1 className="text-xl font-bold tracking-wide">{name}</h1>
               <div className="flex flex-col">
                 {components.map((tool) => {
                   return (
-                    <div
-                      className={cn(
-                        'cursor-pointer rounded border border-border bg-page-background px-2 py-1 hover:bg-background-400',
-                        {
-                          'border-primary bg-primary/20 text-primary': selectIdx1 === tool.path,
-                        },
-                      )}
+                    <SiderItem
                       key={tool.path}
+                      isSelected={selectIdx1 === tool.path}
                       onClick={() => {
                         setSelectIdx1(tool.path);
                         router.push(tool.path);
                       }}
                     >
                       {tool.name}
-                    </div>
+                    </SiderItem>
                   );
                 })}
               </div>
@@ -82,15 +88,13 @@ const Sider = ({}: SiderProps) => {
   return isMDScreen ? (
     <Drawer open={siderExpand} onOpenChange={(open) => setSiderExpand(open)} render={renderContent} />
   ) : (
-    <>
-      <motion.div
-        className="sticky top-0 w-60 bg-background"
-        animate={siderExpand ? { x: 0, width: 'auto' } : { x: -300, width: 0 }}
-        transition={microDampingPreset}
-      >
-        {renderContent()}
-      </motion.div>
-    </>
+    <motion.div
+      className={cn('sticky top-0 w-60 flex-shrink-0 bg-background')}
+      animate={siderExpand ? { x: 0 } : { x: -300, width: 0 }}
+      transition={{ type: 'spring', damping: 18 }}
+    >
+      {renderContent()}
+    </motion.div>
   );
 };
 
