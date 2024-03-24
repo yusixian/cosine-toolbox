@@ -14,6 +14,12 @@
   h6 {
     font-family: '方正悠宋 简 509R', var(--font-poppins), var(--font-notoSerifJp), 'Noto Serif SC';
   }
+
+  input,
+  textarea {
+    @apply outline-1 outline-primary hover:outline focus:outline;
+  }
+
   *::-webkit-scrollbar {
     display: none;
     width: 0;
@@ -66,5 +72,9 @@
 
   .shadow-text {
     text-shadow: 0 0.2rem 0.3rem rgba(0, 0, 0, 0.5);
+  }
+
+  .styled-outline {
+    @apply outline-1 outline-primary hover:outline focus:outline;
   }
 }

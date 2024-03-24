@@ -57,7 +57,7 @@ const Sider = ({}: SiderProps) => {
           {toolsByCategory.map(({ name, components }, categoryIndex) => (
             <div className="flex flex-col gap-2" key={categoryIndex}>
               <h1 className="text-xl font-bold tracking-wide">{name}</h1>
-              <div className="flex flex-col">
+              <div className="flex flex-col gap-1">
                 {components.map((tool) => {
                   return (
                     <SiderItem

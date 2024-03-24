@@ -9,14 +9,14 @@ import { Fragment } from 'react';
 export default function Home() {
   const router = useRouter();
   return (
-    <div>
+    <div className="flex flex-col gap-2">
       {toolsByCategory.map(({ name, components }, categoryIndex) => (
         <Fragment key={categoryIndex}>
           <h1 className="text-xl font-bold tracking-wide">{name}</h1>
-          <div className="grid grid-cols-4 md:grid-cols-3 xs:grid-cols-2">
+          <div className="mb-2 grid grid-cols-4 gap-3 md:grid-cols-3 xs:grid-cols-2">
             {components.map((tool) => {
               return (
-                <motion.div layoutId={tool.path} key={tool.path}>
+                <motion.div className="cursor-pointer" whileHover={{ y: -5 }} layoutId={tool.path} key={tool.path}>
                   <Card onClick={() => router.push(tool.path)} className="flex flex-col gap-2">
                     <CardTitle>{tool.name}</CardTitle>
                     <CardDescription>{tool.description}</CardDescription>

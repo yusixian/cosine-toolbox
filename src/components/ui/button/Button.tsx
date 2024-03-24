@@ -5,7 +5,7 @@ import { ButtonHTMLAttributes, forwardRef, memo } from 'react';
 import { tv } from 'tailwind-variants';
 
 const buttonStyles = tv({
-  base: 'flex items-center justify-center rounded-sm fill-white px-3 py-1.5 text-center text-sm/6 transition-colors',
+  base: 'flex  items-center styled-outline justify-center rounded fill-white px-3 py-1.5 text-center text-sm/6 transition-colors',
   variants: {
     variant: {
       default: 'bg-foreground hover:bg-foreground-hover',

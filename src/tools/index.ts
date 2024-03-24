@@ -1,10 +1,11 @@
 import { ToolCategory } from './tools.types';
 import { tool as urlEncoder } from './url-encoder';
+import { tool as colorConverter } from './color-converter';
 
 export const toolsByCategory: ToolCategory[] = [
   {
     name: 'Web',
-    components: [urlEncoder],
+    components: [urlEncoder, colorConverter],
   },
 ];
 

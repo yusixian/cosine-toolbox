@@ -52,6 +52,9 @@ module.exports = {
         noto: 'Noto Serif SC',
         candy: 'Candyshop',
       },
+      spacing: {
+        76: '19rem',
+      },
     },
   },
   plugins: [require('tailwindcss-textshadow')],

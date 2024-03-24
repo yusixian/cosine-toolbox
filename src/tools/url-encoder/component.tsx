@@ -57,7 +57,7 @@ export function UrlEncoder() {
 
   return (
     <motion.div layoutId="/url-encoder" className="flex flex-col gap-4">
-      <Card className="flex max-w-screen-2xl flex-col gap-2">
+      <Card className="flex flex-col gap-2">
         <div className="flex flex-wrap gap-4 text-sm">
           <Button className="flex-grow" onClick={() => setInputPlain(urlEncodeExample)}>
             编码示例
@@ -102,7 +102,7 @@ export function UrlEncoder() {
       </Card>
       <Card>
         <CardTitle>转换结果</CardTitle>
-        <CopyableResult className="mt-2" copyText={resUrl} />
+        <CopyableResult type="textarea" className="mt-2" copyText={resUrl} />
       </Card>
     </motion.div>
   );
