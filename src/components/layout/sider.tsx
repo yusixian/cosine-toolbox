@@ -11,7 +11,7 @@ import { useAtom } from 'jotai';
 import { useRouter } from 'next/navigation';
 import { PropsWithChildren, useCallback, useEffect } from 'react';
 import { useMediaQuery } from 'react-responsive';
-import Drawer from '../../ui/drawer';
+import Drawer from '../ui/drawer';
 import NavItem from './navigator/NavItem';
 
 function SiderItem({ isSelected, onClick, children }: PropsWithChildren<{ isSelected?: boolean; onClick?: () => void }>) {

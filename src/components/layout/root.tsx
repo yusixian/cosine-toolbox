@@ -2,7 +2,7 @@
 
 import { useTheme } from 'next-themes';
 import { ToastContainer } from 'react-toastify';
-import FloatGroup from '../../widgets/floatGroup/FloatGroup';
+import FloatGroup from '../widgets/floatGroup/FloatGroup';
 import { Header } from './header';
 import Sider from './sider';
 

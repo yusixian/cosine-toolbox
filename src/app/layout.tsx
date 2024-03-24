@@ -1,4 +1,4 @@
-import Root from '@/components/old/layout/root';
+import Root from '@/components/layout/root';
 import { seoConfig } from '@/constants/site-config';
 import { fontVariants } from '@/constants/theme/font';
 import { cn } from '@/lib/utils';
