@@ -1,7 +1,11 @@
 module.exports = {
   darkMode: 'class', // https://tailwindcss.com/docs/dark-mode
-  //
-  content: ['./pages/**/*.{js,ts,jsx,tsx}', './components/**/*.{js,ts,jsx,tsx}'],
+  content: [
+    './src/app/**/*.{js,ts,jsx,tsx}',
+    './src/components/**/*.{js,ts,jsx,tsx}',
+    './src/hook/**/*.{js,ts,jsx,tsx}',
+    './src/tools/**/*.{js,ts,jsx,tsx}',
+  ],
   theme: {
     extend: {
       container: {
@@ -15,16 +19,41 @@ module.exports = {
         '2xl': '1366px',
       },
       colors: {
-        'cos-primary': '#fb7185',
-        'cos-dark-primary': '#93c5fd',
+        primary: '#fb7185',
+        'dark-primary': '#93c5fd',
+        blue: {
+          DEFAULT: '#43BBFF',
+          450: '#4383FF',
+        },
+        yellow: {
+          DEFAULT: '#FFE7AB',
+        },
+        orange: {
+          DEFAULT: '#FFAA2C',
+        },
+        gray: {},
+        border: 'hsl(var(--border))',
+        background: {
+          400: 'hsl(var(--background-400))',
+          DEFAULT: 'hsl(var(--background))',
+        },
+        foreground: {
+          DEFAULT: 'hsl(var(--foreground))',
+          hover: 'hsl(var(--foreground-hover))',
+        },
+        'muted-foreground': 'hsl(var(--muted-foreground))',
+        'page-background': 'hsl(var(--page-background))',
       },
       backgroundImage: {
-        'cos-gradient': 'linear-gradient( 135deg, #ee9ca7 10%, #ffdde1 100%)',
-        'cos-gradient-dark': 'linear-gradient(160deg, rgba(28,28,28,1) 0%, rgba(55,60,56,1) 100%)',
+        gradient: 'linear-gradient(to right, #eb3941, #f15e64, #e14e53, #e2373f)',
       },
       fontFamily: {
         poppins: 'var(--font-poppins)',
-        sc: 'var(--font-sc)',
+        noto: 'Noto Serif SC',
+        candy: 'Candyshop',
+      },
+      spacing: {
+        76: '19rem',
       },
     },
   },

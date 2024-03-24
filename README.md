@@ -1,34 +1,40 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# cosine-toolbox
 
-## Getting Started
+[![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/yusixian/cosine-toolbox/blob/master/LICENSE) [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://github.com/yusixian/cosine-toolbox/pulls)
 
-First, run the development server:
+## 📦 部署 | 安装
 
-```bash
-npm run dev
-# or
-yarn dev
-```
+### Vercel 一键部署
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/yusixian/cosine-toolbox&project-name=my-cos-toolbox&repository-name=my-cos-toolbox)
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+### 本地开发
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+1. 克隆项目到本地
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+    ```bash
+    git clone git@github.com:yusixian/cosine-toolbox.git
+    ```
 
-## Learn More
+2. 安装依赖
 
-To learn more about Next.js, take a look at the following resources:
+    ```bash
+    pnpm i
+    ```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+3. 启动项目
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+    ```bash
+    pnpm dev
+    ```
 
-## Deploy on Vercel
+## 🙏 鸣谢
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+感谢以下项目的开发提供的灵感及参考：
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+- [CorentinTh/it-tools](https://github.com/CorentinTh/it-tools)
+- ...
+
+## 📝 TODO
+
+- [ ] refactor tools
