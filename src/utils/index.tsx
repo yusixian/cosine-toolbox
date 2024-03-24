@@ -23,7 +23,7 @@ export const rgbaStr2rgba = (rgbaStr?: string) => {
 
   // Extract RGBA values from string
   const rgbaArr = rgbaStr.match(/^rgba?\((\d+)[,\s]+(\d+)[,\s]+(\d+)(?:[,\s]*\/?[,\s]*(\d*(?:\.\d+)?))?\)$/i);
-  console.log({ rgbaArr });
+  // console.log({ rgbaArr });
   if (!rgbaArr) return null;
   return {
     rgbaStr: rgbaArr[0],

@@ -4,7 +4,7 @@ import { MD_SCREEN_QUERY } from '@/constants/theme/media';
 import { useIsMounted } from '@/hooks/common/useIsMounted';
 import { useNavItems } from '@/hooks/router';
 import { cn } from '@/lib/utils';
-import { oneLevelTabSelectIdxAtom, siderExpandAtom } from '@/store/app';
+import { oneLevelTabSelectPathAtom, siderExpandAtom } from '@/store/app';
 import { toolsByCategory } from '@/tools';
 import { motion } from 'framer-motion';
 import { useAtom } from 'jotai';
@@ -34,7 +34,7 @@ const Sider = ({}: SiderProps) => {
   const isMDScreen = useMediaQuery({ query: MD_SCREEN_QUERY });
   const router = useRouter();
   const isMounted = useIsMounted();
-  const [selectIdx1, setSelectIdx1] = useAtom(oneLevelTabSelectIdxAtom);
+  const [selectIdx1, setSelectIdx1] = useAtom(oneLevelTabSelectPathAtom);
   const [siderExpand, setSiderExpand] = useAtom(siderExpandAtom);
 
   useEffect(() => {

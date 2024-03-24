@@ -15,8 +15,6 @@ export default function Home() {
           <h1 className="text-xl font-bold tracking-wide">{name}</h1>
           <div className="grid grid-cols-4 md:grid-cols-3 xs:grid-cols-2">
             {components.map((tool) => {
-              console.log(`( tool )===============>`, tool);
-              // console.log(`( tool )===============>`, tool);
               return (
                 <motion.div layoutId={tool.path} key={tool.path}>
                   <Card onClick={() => router.push(tool.path)} className="flex flex-col gap-2">
