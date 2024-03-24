@@ -23,13 +23,8 @@ export function Header() {
 
   /** Set SelectIdx When Change Route */
   useEffect(() => {
-    for (let i = 0; i < routers.length; i++) {
-      if (routers[i].path === path) {
-        setSelectPath(path);
-        break;
-      }
-    }
-  }, [path, routers, setSelectPath]);
+    setSelectPath(path);
+  }, [path, setSelectPath]);
 
   return (
     <motion.header
