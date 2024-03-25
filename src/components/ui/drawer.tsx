@@ -84,7 +84,7 @@ function Drawer({
       <FloatingPortal>
         <AnimatePresence onExitComplete={onExitComplete}>
           {open && (
-            <FloatingOverlay lockScroll className="relative bg-black/30" style={{ zIndex }}>
+            <FloatingOverlay lockScroll className={'relative bg-black/30'} style={{ zIndex }}>
               <FloatingFocusManager context={context}>
                 <motion.div
                   className={cn(
@@ -93,10 +93,10 @@ function Drawer({
                     fontVariants,
                     className,
                   )}
-                  initial={{ opacity: 0, translateX: -10 }}
-                  animate={{ opacity: 1, translateX: 0 }}
-                  exit={{ opacity: 0, translateX: -10 }}
-                  transition={{ type: 'spring', damping: 20, stiffness: 300 }}
+                  initial={{ width: 20, x: -100 }}
+                  animate={{ width: 'auto', x: 0 }}
+                  exit={{ width: 20, x: -100 }}
+                  transition={{ type: 'spring', damping: 18 }}
                   {...getFloatingProps({ ref: setFloating })}
                 >
                   {title || renderHeader ? (

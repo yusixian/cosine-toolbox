@@ -6,7 +6,7 @@ import { useNavItems } from '@/hooks/router';
 import { cn } from '@/lib/utils';
 import { oneLevelTabSelectPathAtom, siderExpandAtom } from '@/store/app';
 import { motion } from 'framer-motion';
-import { useAtom } from 'jotai';
+import { useAtom, useSetAtom } from 'jotai';
 import { usePathname, useRouter } from 'next/navigation';
 import { useEffect } from 'react';
 import { CgClose, CgMenu } from 'react-icons/cg';
@@ -16,9 +16,9 @@ export function Header() {
   const router = useRouter();
   const { alternate, title } = siteConfig;
   const isVisible = useScrollHide();
-  const [selectPath, setSelectPath] = useAtom(oneLevelTabSelectPathAtom);
+  const setSelectPath = useSetAtom(oneLevelTabSelectPathAtom);
   const [siderExpand, setSiderExpand] = useAtom(siderExpandAtom);
-  const { routers, buttons } = useNavItems();
+  const { buttons } = useNavItems();
   const path = usePathname();
 
   /** Set SelectIdx When Change Route */
@@ -94,21 +94,6 @@ export function Header() {
         variants={childDelayOpenAnimVariants}
         className="ml-4 flex h-full w-full flex-grow gap-4"
       >
-        {routers.map(({ name, path, key }) => {
-          return (
-            <NavItem
-              selected={selectPath === path}
-              indicatorClass="bottom-0.5"
-              className="-mt-0.5 px-2"
-              key={key ?? name}
-              onClick={() => {
-                router.push(path);
-                setSelectPath(path);
-              }}
-              name={name}
-            />
-          );
-        })}
         <div className="ml-auto flex items-center gap-1">
           {buttons.map(({ key, icon, onClick }) => (
             <NavItem className="px-1 py-1" key={key} onClick={onClick} icon={icon} />

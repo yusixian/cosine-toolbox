@@ -9,7 +9,7 @@ import { toolsByCategory } from '@/tools';
 import { motion } from 'framer-motion';
 import { useAtom } from 'jotai';
 import { useRouter } from 'next/navigation';
-import { PropsWithChildren, useCallback, useEffect } from 'react';
+import { PropsWithChildren, createElement, useCallback, useEffect } from 'react';
 import { useMediaQuery } from 'react-responsive';
 import Drawer from '../ui/drawer';
 import NavItem from './navigator/NavItem';
@@ -18,7 +18,7 @@ function SiderItem({ isSelected, onClick, children }: PropsWithChildren<{ isSele
   return (
     <div
       className={cn(
-        'cursor-pointer rounded border border-border bg-foreground px-2 py-1',
+        'flex cursor-pointer items-center gap-1 truncate rounded border border-border bg-foreground px-2 py-1',
         isSelected ? 'border-primary bg-primary/20 text-primary' : 'hover:bg-foreground-hover',
       )}
       onClick={onClick}
@@ -43,7 +43,7 @@ const Sider = ({}: SiderProps) => {
 
   const renderContent = useCallback(() => {
     return (
-      <div className="flex h-full w-full flex-col justify-between gap-2 px-3 pt-4">
+      <div className="flex h-full select-none flex-col justify-between gap-2 px-3 pt-4">
         <div className="flex flex-col gap-4">
           <SiderItem
             isSelected={!selectIdx1 || ['/', 'home'].includes(selectIdx1)}
@@ -68,6 +68,7 @@ const Sider = ({}: SiderProps) => {
                         router.push(tool.path);
                       }}
                     >
+                      {createElement(tool.icon)}
                       {tool.name}
                     </SiderItem>
                   );
@@ -76,7 +77,7 @@ const Sider = ({}: SiderProps) => {
             </div>
           ))}
         </div>
-        <div className="flex flex-col gap-2">
+        <div className="flex-center flex-wrap gap-2 pb-2">
           {buttons.map(({ key, icon, onClick }) => (
             <NavItem key={key} className="w-full px-1 py-1" onClick={onClick} icon={icon} />
           ))}

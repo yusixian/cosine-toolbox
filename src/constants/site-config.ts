@@ -5,7 +5,7 @@ type SiteConfig = {
 
 export const siteConfig: SiteConfig = {
   title: '余弦工具箱', // 网站名称
-  alternate: 'cos toolbox', // 网站名称
+  alternate: 'Cos toolbox', // 网站名称
 };
 
 export const seoConfig = {
