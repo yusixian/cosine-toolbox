@@ -5,7 +5,7 @@
   --background: 0, 0%, 100%; /* #ffffff */
   --background-400: 0, 0%, 93%; /* #eee */
   --page-background: 210, 40%, 96%; /* #f1f5f9 */
-  --muted-foreground: 210, 6%, 21%; /* #333639 */
+  --muted-foreground: 0, 0%, 45%; /* #333639 */
   --foreground: 210, 10%, 20%, 9%; /* #2e3338 */
   --foreground-hover: 210, 10%, 20%, 22%; /* #2e3338 */
 }
@@ -16,7 +16,7 @@
   --background: 0, 0%, 14%; /* #232323 */
   --background-200: 0, 0%, 100%, 0.12; /* #444444 */
   --page-background: 0, 0%, 11%; /* #1c1c1c */
-  --muted-foreground: 0, 0%, 100%, 80%; /* #ffffffd1 */
+  --muted-foreground: 0, 0%, 100%, 60%; /* #ffffffd1 */
   --foreground: 0, 0%, 100%, 8%; /* #fff */
   --foreground-hover: 0, 0%, 100%, 12%; /* #fff */
 }
