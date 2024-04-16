@@ -14,9 +14,9 @@
   /* tailwind color */
   --border: 0, 0%, 16%; /* #282828 */
   --background: 0, 0%, 14%; /* #232323 */
-  --background-200: 0, 0%, 100%, 0.12; /* #444444 */
+  --background-400: 0, 0%, 100%, 0.12; /* #444444 */
   --page-background: 0, 0%, 11%; /* #1c1c1c */
   --muted-foreground: 0, 0%, 100%, 60%; /* #ffffffd1 */
-  --foreground: 0, 0%, 100%, 8%; /* #fff */
-  --foreground-hover: 0, 0%, 100%, 12%; /* #fff */
+  --foreground: 0, 0%, 100%, 8%; /* #ffffff14 */
+  --foreground-hover: 0, 0%, 100%, 12%; /* #ffffff1f */
 }
