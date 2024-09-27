@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@floating-ui/react": "^0.26.9",
+    "@types/crypto-js": "^4.2.2",
     "@types/file-saver": "^2.0.7",
     "@types/lodash-es": "^4.17.12",
     "antd": "^5.15.3",
@@ -17,6 +18,7 @@
     "clsx": "^1.2.1",
     "colord": "^2.9.3",
     "copy-to-clipboard": "^3.3.3",
+    "crypto-js": "^4.2.0",
     "date-fns": "^3.6.0",
     "file-saver": "^2.0.5",
     "framer-motion": "^10.18.0",

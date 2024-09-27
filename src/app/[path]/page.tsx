@@ -16,7 +16,7 @@ export default function ToolPage({ params }: { params: { path: string } }) {
     <div className="flex flex-col gap-2">
       <h1 className="text-2xl font-bold">{name}</h1>
       <div className="h-px w-full bg-foreground" />
-      <p className="mb-4 text-base text-muted-foreground">{description}</p>
+      <p className="mb-4 whitespace-pre-wrap text-base text-muted-foreground">{description}</p>
       {createElement(component)}
     </div>
   );

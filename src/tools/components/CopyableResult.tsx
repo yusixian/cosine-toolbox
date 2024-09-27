@@ -3,6 +3,7 @@ import copy from 'copy-to-clipboard';
 import { twMerge } from 'tailwind-merge';
 import Button from '@/components/ui/button/Button';
 import { FiCopy } from 'react-icons/fi';
+import { cn } from '@/lib/utils';
 
 type CopyableResultProps = {
   copyText?: string;
@@ -23,10 +24,10 @@ export default function CopyableResult({ copyText, className, areaClass, type = 
   };
   if (type === 'input')
     return (
-      <div className={twMerge('relative flex', className)}>
+      <div className={cn('relative flex', className)}>
         <input
-          className={twMerge(
-            'border-r-none flex-grow overflow-hidden truncate whitespace-pre-wrap rounded-s border border-border px-2  outline-1 outline-primary hover:outline focus:outline',
+          className={cn(
+            'border-r-none flex-grow overflow-hidden truncate whitespace-pre-wrap rounded-s border border-border px-2 outline-1 outline-primary hover:outline focus:outline',
             areaClass,
           )}
           value={copyText}
@@ -39,12 +40,9 @@ export default function CopyableResult({ copyText, className, areaClass, type = 
     );
 
   return (
-    <div className={twMerge('relative flex items-start gap-2', className)}>
+    <div className={cn('relative flex items-start gap-2', className)}>
       <textarea
-        className={twMerge(
-          'h-16 w-full flex-grow overflow-hidden whitespace-pre-wrap rounded border border-border p-2',
-          areaClass,
-        )}
+        className={cn('h-16 w-full flex-grow overflow-hidden whitespace-pre-wrap rounded border border-border p-2', areaClass)}
         value={copyText}
         readOnly
       />

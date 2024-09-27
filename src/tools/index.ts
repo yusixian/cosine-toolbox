@@ -1,11 +1,12 @@
 import { ToolCategory } from './tools.types';
 import { tool as urlEncoder } from './url-encoder';
 import { tool as colorConverter } from './color-converter';
+import { tool as rsshubUrlConverter } from './rsshub-url-covert';
 
 export const toolsByCategory: ToolCategory[] = [
   {
     name: 'Web',
-    components: [urlEncoder, colorConverter],
+    components: [urlEncoder, colorConverter, rsshubUrlConverter],
   },
 ];
 
