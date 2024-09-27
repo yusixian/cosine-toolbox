@@ -1,9 +1,8 @@
-import { toast } from 'react-toastify';
-import copy from 'copy-to-clipboard';
-import { twMerge } from 'tailwind-merge';
 import Button from '@/components/ui/button/Button';
-import { FiCopy } from 'react-icons/fi';
 import { cn } from '@/lib/utils';
+import copy from 'copy-to-clipboard';
+import { FiCopy } from 'react-icons/fi';
+import { toast } from 'react-toastify';
 
 type CopyableResultProps = {
   copyText?: string;
