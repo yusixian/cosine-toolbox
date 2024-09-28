@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "change": "git cliff -o CHANGELOG.md"
   },
   "dependencies": {
     "@floating-ui/react": "^0.26.9",
