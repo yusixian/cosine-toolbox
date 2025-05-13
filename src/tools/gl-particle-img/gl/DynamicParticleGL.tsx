@@ -16,8 +16,8 @@ function sketch(p5: P5CanvasInstance<ParticleGLProps>) {
   let allParticles: Particle[] = [];
   const IS_MOBILE = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
   const defaultConfig = {
-    scaleNum: 1.5,
-    loadPercentage: 0.01,
+    scaleNum: 1.25,
+    loadPercentage: 0.006,
     resolution: IS_MOBILE ? 15 : 5,
   };
   const closeEnoughTarget = 100;
