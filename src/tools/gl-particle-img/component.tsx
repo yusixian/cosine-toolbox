@@ -28,7 +28,7 @@ export function ParticleImg() {
         <span>{imageIdx}</span>
         <Button
           onClick={() => {
-            if (imageIdx < 3) {
+            if (imageIdx < 2) {
               // TODO: imgs info 从组件中拆出来
               setImageIdx(imageIdx + 1);
             } else {
