@@ -86,7 +86,7 @@ export function Header() {
         className="flex cursor-pointer items-center justify-center gap-1 whitespace-nowrap text-2xl font-bold"
         onClick={() => router.push('/')}
       >
-        <p className="font-candy text-2xl font-light capitalize tracking-widest text-primary">{alternate ?? title}</p>
+        <p className="font-cherry text-2xl font-light capitalize tracking-widest text-primary">{alternate ?? title}</p>
       </motion.div>
       <motion.div
         initial="closed"

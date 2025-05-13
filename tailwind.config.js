@@ -50,7 +50,7 @@ module.exports = {
       fontFamily: {
         poppins: 'var(--font-poppins)',
         noto: 'Noto Serif SC',
-        candy: 'Candyshop',
+        cherry: 'var(--font-cherry-bomb-one)',
       },
       spacing: {
         76: '19rem',

@@ -68,7 +68,7 @@ const Sider = ({}: SiderProps) => {
                         router.push(tool.path);
                       }}
                     >
-                      {createElement(tool.icon)}
+                      {createElement(tool.icon, { className: 'shrink-0' })}
                       {tool.name}
                     </SiderItem>
                   );
