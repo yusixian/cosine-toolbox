@@ -7,7 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "change": "git cliff -o CHANGELOG.md"
+    "change": "git cliff -o CHANGELOG.md",
+    "new": "plop --plopfile ./scripts/plopfile.js"
   },
   "dependencies": {
     "@floating-ui/react": "^0.26.9",
@@ -53,6 +54,7 @@
     "autoprefixer": "^10.4.19",
     "eslint": "8.20.0",
     "eslint-config-next": "12.2.3",
+    "plop": "^4.0.1",
     "postcss": "^8.4.38",
     "prettier": "^2.8.8",
     "prettier-plugin-tailwindcss": "^0.1.13",

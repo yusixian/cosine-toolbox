@@ -1,0 +1,12 @@
+import { {{iconName}} } from 'react-icons/fa'; // TODO: Update import path based on icon
+import { defineTool } from '../tool';
+import { {{pascalCase path}} } from './component';
+
+export const tool = defineTool({
+  name: '{{name}}',
+  path: '/{{kebabCase path}}',
+  description: '{{description}}',
+  keywords: [{{#each keywords}}{{#if @index}}, {{/if}}'{{this}}'{{/each}}],
+  component: {{pascalCase path}},
+  icon: {{iconName}},
+});
