@@ -129,53 +129,44 @@ import { tool as {{camelCase path}} } from './{{kebabCase path}}';`,
       });
 
       // Update toolsByCategory based on category
-      if (data.category === 'Converter') {
-        actions.push({
-          type: 'modify',
-          path: '../src/tools/index.ts',
-          pattern: /(name: 'Converter',[\s\S]*?components: \[)([^\]]*?)(\])/,
-          template: '$1$2, {{camelCase path}}$3',
-        });
-      } else if (data.category === 'WebGL Effect') {
-        actions.push({
-          type: 'modify',
-          path: '../src/tools/index.ts',
-          pattern: /(name: 'WebGL Effect',[\s\S]*?components: \[)([^\]]*?)(\])/,
-          template: '$1$2, {{camelCase path}}$3',
-        });
-      } else {
-        // For other categories (Utility, Generator, Custom)
-        // Use a unified approach with transform function
-        actions.push({
-          type: 'modify',
-          path: '../src/tools/index.ts',
-          transform: function(fileContent, data) {
-            const categoryRegex = new RegExp(`(\\s*{\\s*name:\\s*'${data.category.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}',[\\s\\S]*?components:\\s*\\[)([\\s\\S]*?)(\\],?\\s*})`);
-            const categoryMatch = fileContent.match(categoryRegex);
-            
-            // Convert path to camelCase
-            const camelCasePath = data.path.replace(/-([a-z])/g, function (g) {
-              return g[1].toUpperCase();
-            });
-            
-            if (categoryMatch) {
-              // Category exists, add to it
-              const existingComponents = categoryMatch[2].trim();
-              const updatedComponents = existingComponents 
-                ? `${existingComponents}, ${camelCasePath}`
-                : camelCasePath;
-              return fileContent.replace(categoryRegex, `$1${updatedComponents}$3`);
-            } else {
-              // Category doesn't exist, add new category
-              return fileContent.replace(/(\];)/, `  {
+
+      // For other categories (Utility, Generator, Custom)
+      // Use a unified approach with transform function
+      actions.push({
+        type: 'modify',
+        path: '../src/tools/index.ts',
+        transform: function (fileContent, data) {
+          const categoryRegex = new RegExp(
+            `(\\s*{\\s*name:\\s*'${data.category.replace(
+              /[.*+?^${}()|[\]\\]/g,
+              '\\$&',
+            )}',[\\s\\S]*?components:\\s*\\[)([\\s\\S]*?)(\\],?\\s*})`,
+          );
+          const categoryMatch = fileContent.match(categoryRegex);
+
+          // Convert path to camelCase
+          const camelCasePath = data.path.replace(/-([a-z])/g, function (g) {
+            return g[1].toUpperCase();
+          });
+
+          if (categoryMatch) {
+            // Category exists, add to it
+            const existingComponents = categoryMatch[2].trim();
+            const updatedComponents = existingComponents ? `${existingComponents}, ${camelCasePath}` : camelCasePath;
+            return fileContent.replace(categoryRegex, `$1${updatedComponents}$3`);
+          } else {
+            // Category doesn't exist, add new category
+            return fileContent.replace(
+              /(\];)/,
+              `  {
     name: '${data.category}',
     components: [${camelCasePath}],
   },
-$1`);
-            }
+$1`,
+            );
           }
-        });
-      }
+        },
+      });
 
       return actions;
     },
