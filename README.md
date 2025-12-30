@@ -12,21 +12,29 @@
 
 1. 克隆项目到本地
 
-    ```bash
-    git clone git@github.com:yusixian/cosine-toolbox.git
-    ```
+```bash
+git clone git@github.com:yusixian/cosine-toolbox.git
+```
 
 2. 安装依赖
 
-    ```bash
-    pnpm i
-    ```
+```bash
+nr i
+```
 
 3. 启动项目
 
-    ```bash
-    pnpm dev
-    ```
+```bash
+nr dev
+```
+
+4. 新建工具
+
+具体可以参见 [docs/new-tool-guide.md](docs/new-tool-guide.md)
+
+```bash
+nr new
+```
 
 ## 🙏 鸣谢
 
