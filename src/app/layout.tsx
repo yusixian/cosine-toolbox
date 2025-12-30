@@ -6,6 +6,7 @@ import Providers from './providers';
 
 import '@/styles/index.css';
 import 'react-toastify/dist/ReactToastify.css';
+import Head from 'next/head';
 
 type Props = {
   children: React.ReactNode;
@@ -38,12 +39,12 @@ export default async function RootLayout(props: Props) {
   const { children } = props;
   return (
     <html lang="zh-CN" suppressHydrationWarning>
-      <head>
+      <Head>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-      </head>
+      </Head>
       <body className={cn('vertical-scrollbar m-0 h-full overscroll-none p-0', ...fontVariants)}>
         <Providers>
           <Root>{children}</Root>

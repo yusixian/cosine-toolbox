@@ -13,6 +13,7 @@ cosine-toolbox is a Next.js-based collection of web utilities and tools, featuri
 - `pnpm start` - Start production server
 - `pnpm lint` - Run ESLint linting
 - `pnpm change` - Generate changelog using git-cliff
+- `pnpm new` - Create a new tool using Plop generator (interactive prompts for name, path, category, etc.)
 
 Use `pnpm` as the package manager (not npm or yarn).
 

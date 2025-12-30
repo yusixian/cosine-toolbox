@@ -3,6 +3,7 @@ import { tool as urlEncoder } from './url-encoder';
 import { tool as colorConverter } from './color-converter';
 import { tool as rsshubUrlConverter } from './rsshub-url-covert';
 import { tool as glParticleImg } from './gl-particle-img';
+import { tool as scraper } from './scraper';
 
 export const toolsByCategory: ToolCategory[] = [
   {
@@ -12,6 +13,10 @@ export const toolsByCategory: ToolCategory[] = [
   {
     name: 'WebGL Effect',
     components: [glParticleImg],
+  },
+  {
+    name: 'Utility',
+    components: [scraper],
   },
 ];
 

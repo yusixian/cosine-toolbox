@@ -41,7 +41,8 @@
     "react-toastify": "^10.0.5",
     "react-use": "^17.5.0",
     "tailwind-merge": "^1.14.0",
-    "tailwind-variants": "^0.2.1"
+    "tailwind-variants": "^0.2.1",
+    "youtube-caption-extractor": "^1.9.1"
   },
   "devDependencies": {
     "@svgr/webpack": "^8.1.0",

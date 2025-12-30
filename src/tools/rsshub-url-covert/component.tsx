@@ -26,19 +26,19 @@ export function RSSHubUrlConverter() {
       setInputRoute(localData[1]);
       setInputUrlPrefix(localData[2]);
     }
-  }, [localData]);
+  }, [localData, setInputAccessKey, setInputRoute, setInputUrlPrefix]);
 
   const reset = useCallback(() => {
     setInputAccessKey('');
     setInputRoute('');
     setInputUrlPrefix('');
-  }, [setInputAccessKey, setInputRoute]);
+  }, [setInputAccessKey, setInputRoute, setInputUrlPrefix]);
 
   const example = useCallback(() => {
     setInputAccessKey(accessKeyExample);
     setInputRoute(routeExample);
     setInputUrlPrefix(urlPrefixExample);
-  }, [setInputAccessKey, setInputRoute]);
+  }, [setInputAccessKey, setInputRoute, setInputUrlPrefix]);
 
   const saveToLocalStorage = useCallback(() => {
     try {
